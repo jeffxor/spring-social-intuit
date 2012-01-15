@@ -1,0 +1,3 @@
+org.springframework.social.twitter.api
+org.springframework.social.twitter.api.impl
+org.springframework.social.twitter.connect

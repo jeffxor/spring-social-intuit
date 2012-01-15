@@ -1,0 +1,576 @@
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <title>Spring Social Twitter Reference Manual</title><link rel="stylesheet" href="css/manual.css" type="text/css"><meta name="generator" content="DocBook XSL Stylesheets V1.75.2"><!--Begin Google Analytics code--><script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script><script type="text/javascript">
+var pageTracker = _gat._getTracker("UA-2728886-3");
+pageTracker._setDomainName("none");
+pageTracker._setAllowLinker(true);
+pageTracker._trackPageview();
+</script><!--End Google Analytics code--></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="book" title="Spring Social Twitter Reference Manual"><div class="titlepage"><div><div><h1 class="title"><a name="spring-social-reference"></a>Spring Social Twitter Reference Manual</h1></div><div><div class="authorgroup">
+      <div class="author"><h3 class="author"><span class="firstname">Craig</span> <span class="surname">Walls</span></h3></div>
+      <div class="author"><h3 class="author"><span class="firstname">Keith</span> <span class="surname">Donald</span></h3></div>
+    </div></div><div><p class="releaseinfo">1.0.2.BUILD-SNAPSHOT</p></div><div><div class="legalnotice" title="Legal Notice"><a name="d4e19"></a><p>&copy; SpringSource Inc., 2011</p></div></div></div><hr></div><div class="toc"><p><b>Table of Contents</b></p><dl><dt><span class="chapter"><a href="#overview">1. Spring Social Twitter Overview</a></span></dt><dd><dl><dt><span class="section"><a href="#overview-introduction">1.1. Introduction</a></span></dt><dt><span class="section"><a href="#overview-howtoget">1.2. How to get</a></span></dt></dl></dd><dt><span class="chapter"><a href="#connecting">2. Configuring Twitter Connectivity</a></span></dt><dt><span class="chapter"><a href="#apis">3. Twitter API Binding</a></span></dt><dd><dl><dt><span class="section"><a href="#twitter-getProfile">3.1. Retrieving a user's Twitter profile data</a></span></dt><dt><span class="section"><a href="#twitter-status">3.2. Tweeting</a></span></dt><dt><span class="section"><a href="#twitter-timelines">3.3. Reading Twitter timelines</a></span></dt><dt><span class="section"><a href="#twitter-friends">3.4. Friends and Followers</a></span></dt><dt><span class="section"><a href="#twitter-lists">3.5. Twitter User Lists</a></span></dt><dt><span class="section"><a href="#twitter-search">3.6. Searching Twitter</a></span></dt><dt><span class="section"><a href="#twitter-directMessages">3.7. Sending and receiving direct messages</a></span></dt></dl></dd></dl></div>
+  
+
+  
+  
+    <div class="chapter" title="1.&nbsp;Spring Social Twitter Overview"><div class="titlepage"><div><div><h2 class="title"><a name="overview"></a>1.&nbsp;Spring Social Twitter Overview</h2></div></div></div>
+  
+
+  <div class="section" title="1.1&nbsp;Introduction"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="overview-introduction"></a>1.1&nbsp;Introduction</h2></div></div></div>
+    
+    
+    <p>
+	    The Spring Social Twitter project is an extension to <a class="ulink" href="http://www.springframework.org/spring-social" target="_top">Spring Social</a> that enables integration with Twitter.
+	</p>
+
+	<p>
+		<a class="ulink" href="http://www.twitter.com" target="_top">Twitter</a> is a popular micro-blogging and social networking service, enabling people to communicate with each other 140 characters at a time.
+	</p>
+
+	<p>
+		Spring Social Twitter enables integration with Twitter with <code class="classname">TwitterConnectionFactory</code>, a connection factory that can be plugged into Spring Social's service provider connection framework, and with an API binding to Twitter's REST API.
+	</p>
+  </div>
+
+  <div class="section" title="1.2&nbsp;How to get"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="overview-howtoget"></a>1.2&nbsp;How to get</h2></div></div></div>
+    
+    
+    <p>
+        The following Maven dependency will add Spring Social Twitter to your project:
+	</p>
+	
+    <pre class="programlisting">
+<span class="hl-tag">&lt;dependency&gt;</span>
+  <span class="hl-tag">&lt;groupId&gt;</span>org.springframework.social<span class="hl-tag">&lt;/groupId&gt;</span>
+  <span class="hl-tag">&lt;artifactId&gt;</span>spring-social-twitter<span class="hl-tag">&lt;/artifactId&gt;</span>
+  <span class="hl-tag">&lt;version&gt;</span>${org.springframework.social-twitter-version}<span class="hl-tag">&lt;/version&gt;</span>
+<span class="hl-tag">&lt;/dependency&gt;</span>
+    </pre>
+
+    <p>
+	    As an extension to Spring Social, Spring Social Twitter depends on Spring Social. 
+	    Spring Social's core module will be transitively resolved from the Spring Social Twitter dependency.
+        If you'll be using Spring Social's web module, you'll need to add that dependency yourself:
+	</p>
+
+    <pre class="programlisting">
+<span class="hl-tag">&lt;dependency&gt;</span>
+  <span class="hl-tag">&lt;groupId&gt;</span>org.springframework.social<span class="hl-tag">&lt;/groupId&gt;</span>
+  <span class="hl-tag">&lt;artifactId&gt;</span>spring-social-web<span class="hl-tag">&lt;/artifactId&gt;</span>
+  <span class="hl-tag">&lt;version&gt;</span>${org.springframework.social-version}<span class="hl-tag">&lt;/version&gt;</span>
+<span class="hl-tag">&lt;/dependency&gt;</span>
+    </pre>
+
+    <p>
+	    Note that Spring Social Twitter may release on a different schedule than Spring Social.
+	    Consequently, Spring Social's version may differ from that of Spring Social Twitter.
+	</p>
+	
+	<p>
+		Consult <a class="ulink" href="http://static.springsource.org/spring-social/docs/1.0.x/reference/html/overview.html#overview-howtoget" target="_top">Spring Social's reference documentation</a> for more information on Spring Social dependencies.
+	</p>
+  </div>
+
+</div>
+    <div class="chapter" title="2.&nbsp;Configuring Twitter Connectivity"><div class="titlepage"><div><div><h2 class="title"><a name="connecting"></a>2.&nbsp;Configuring Twitter Connectivity</h2></div></div></div>
+			
+
+	<p>
+		Spring Social's <code class="classname">ConnectController</code> works with one or more provider-specific <code class="classname">ConnectionFactory</code>s to exchange authorization details with the provider and to create connections. 
+		Spring Social Twitter provides <code class="classname">TwitterConnectionFactory</code>, a <code class="classname">ConnectionFactory</code> for creating connections with Twitter.
+	</p>
+
+	<p>
+		So that <code class="classname">ConnectController</code> can find <code class="classname">TwitterConnectionFactory</code>, it must be registered with a <code class="classname">ConnectionFactoryRegistry</code>.
+		The following class constructs a <code class="classname">ConnectionFactoryRegistry</code> containing a <code class="interfacename">ConnectionFactory</code> for Twitter using Spring's Java configuration style: 		
+	</p>
+	<pre class="programlisting">
+<i><span class="hl-annotation" style="color: gray">@Configuration</span></i>
+<span class="hl-keyword">public</span> <span class="hl-keyword">class</span> SocialConfig {
+
+    <i><span class="hl-annotation" style="color: gray">@Inject</span></i>
+    <span class="hl-keyword">private</span> Environment environment;
+	
+    <i><span class="hl-annotation" style="color: gray">@Bean</span></i>
+    <span class="hl-keyword">public</span> ConnectionFactoryLocator connectionFactoryLocator() {
+        ConnectionFactoryRegistry registry = <span class="hl-keyword">new</span> ConnectionFactoryRegistry();
+        registry.addConnectionFactory(<span class="hl-keyword">new</span> TwitterConnectionFactory(
+            environment.getProperty(<span class="hl-string">"twitter.consumerKey"</span>),
+            environment.getProperty(<span class="hl-string">"twitter.consumerSecret"</span>)));
+        <span class="hl-keyword">return</span> registry;
+    }
+
+}
+
+	</pre>
+
+	<p>
+		Here, a Twitter connection factory is registered with <code class="classname">ConnectionFactoryRegistry</code> via the <code class="methodname">addConnectionFactory()</code> method.
+		If we wanted to add support for connecting to other providers, we would simply register their connection factories here in the same way as <code class="classname">TwitterConnectionFactory</code>.
+	</p>
+	
+	<p>
+		Because consumer keys and secrets may be different across environments (e.g., test, production, etc) it is recommended that these values be externalized. 
+		As shown here, Spring 3.1's <code class="interfacename">Environment</code> is used to look up the application's consumer key and secret.
+	</p>	
+
+	<p>
+		Optionally, you may also configure <code class="classname">ConnectionFactoryRegistry</code> and <code class="classname">TwitterConnectionFactory</code> in XML:
+	</p>
+		
+	<pre class="programlisting">
+<span class="hl-tag">&lt;bean</span> <span class="hl-attribute">id</span>=<span class="hl-value">"connectionFactoryLocator"</span> <span class="hl-attribute">class</span>=<span class="hl-value">"org.springframework.social.connect.support.ConnectionFactoryRegistry"</span><span class="hl-tag">&gt;</span>
+    <span class="hl-tag">&lt;property</span> <span class="hl-attribute">name</span>=<span class="hl-value">"connectionFactories"</span><span class="hl-tag">&gt;</span>
+        <span class="hl-tag">&lt;list&gt;</span>
+            <span class="hl-tag">&lt;bean</span> <span class="hl-attribute">class</span>=<span class="hl-value">"org.springframework.social.twitter.connect.TwitterConnectionFactory"</span><span class="hl-tag">&gt;</span>
+                <span class="hl-tag">&lt;constructor-arg</span> <span class="hl-attribute">value</span>=<span class="hl-value">"${twitter.consumerKey}"</span><span class="hl-tag"> /&gt;</span>
+                <span class="hl-tag">&lt;constructor-arg</span> <span class="hl-attribute">value</span>=<span class="hl-value">"${twitter.consumerSecret}"</span><span class="hl-tag"> /&gt;</span>				
+            <span class="hl-tag">&lt;/bean&gt;</span>
+        <span class="hl-tag">&lt;/list&gt;</span>
+    <span class="hl-tag">&lt;/property&gt;</span>
+<span class="hl-tag">&lt;/bean&gt;</span>
+	</pre>	
+
+	<p>
+		This is functionally equivalent to the Java-based configuration of <code class="classname">ConnectionFactoryRegistry</code> shown before.
+		The only casual difference is that the connection factories are injected as a list into the <code class="code">connectionFactories</code> property rather than with the <code class="methodname">addConnectionFactory()</code> method.
+		As in the Java-based configuration, the application's consumer key and secret are externalized (shown here as property placeholders).
+	</p>	
+		
+	<p>
+		Refer to <a class="ulink" href="http://static.springsource.org/spring-social/docs/1.0.x/reference/html/connecting.html" target="_top">Spring Social's reference documentation</a> for complete details on configuring <code class="classname">ConnectController</code> and its dependencies.
+	</p>
+			
+</div>
+    <div class="chapter" title="3.&nbsp;Twitter API Binding"><div class="titlepage"><div><div><h2 class="title"><a name="apis"></a>3.&nbsp;Twitter API Binding</h2></div></div></div>
+	
+  
+	<p>
+		Spring Social Twitter offers integration with Twitter's REST API through the <code class="interfacename">Twitter</code> interface and its implementation, <code class="classname">TwitterTemplate</code>.			
+	</p>
+
+	<p>
+		Creating an instance of <code class="classname">TwitterTemplate</code> involves invoking its constructor, passing in the application's OAuth credentials and an access token/secret pair authorizing the application to act on a user's behalf. 
+		For example:
+	</p>
+	
+	<pre class="programlisting">
+String consumerKey = <span class="hl-string">"..."</span>; <span class="hl-comment">// The application's consumer key</span>
+String consumerSecret = <span class="hl-string">"..."</span>; <span class="hl-comment">// The application's consumer secret</span>
+String accessToken = <span class="hl-string">"..."</span>; <span class="hl-comment">// The access token granted after OAuth authorization</span>
+String accessTokenSecret = <span class="hl-string">"..."</span>; <span class="hl-comment">// The access token secret granted after OAuth authorization</span>
+Twitter twitter = <span class="hl-keyword">new</span> TwitterTemplate(consumerKey, consumerSecret, accessToken, accessTokenSecret);
+	</pre>
+	
+	<p>
+		In addition, <code class="classname">TwitterTemplate</code> has a default constructor that creates an instance without any OAuth credentials:
+	</p>
+	
+	<pre class="programlisting">
+Twitter twitter = <span class="hl-keyword">new</span> TwitterTemplate();
+	</pre>
+	
+	<p>
+		When constructed with the default constructor, <code class="classname">TwitterTemplate</code> will allow a few simple operations that do not require authorization, such as searching. 
+		Attempting other operations, such as tweeting will fail with an <code class="classname">MissingAuthorizationException</code> being thrown.
+	</p>
+	
+	<p>
+		If you are using Spring Social's <a class="ulink" href="http://static.springsource.org/spring-social/docs/1.0.x/reference/html/serviceprovider.html" target="_top">service provider framework</a>, you can get an instance of <code class="interfacename">Twitter</code> from a <code class="interfacename">Connection</code>. 
+		For example, the following snippet calls <code class="methodname">getApi()</code> on a connection to retrieve a <code class="interfacename">Twitter</code>:
+	</p>				
+	
+	<pre class="programlisting">
+Connection&lt;Twitter&gt; connection = connectionRepository.findPrimaryConnection(Twitter.<span class="hl-keyword">class</span>);
+Twitter twitter = connection != null ? connection.getApi() : <span class="hl-keyword">new</span> TwitterTemplate();
+	</pre>
+	
+	<p>
+		Here, <code class="interfacename">ConnectionRepository</code> is being asked for the primary connection that the current user has with Twitter.
+		If connection to Twitter is found, a call to <code class="methodname">getApi()</code> retrieves a <code class="interfacename">Twitter</code> instance that is configured with the connection details received when the connection was first established.
+		If there is no connection, a default instance of <code class="classname">TwitterTemplate</code> is created.
+	</p>
+	
+	<p>
+		Once you have a <code class="interfacename">Twitter</code>, you can perform a several operations against Twitter.
+		<code class="interfacename">Twitter</code> is defined as follows:
+	</p>
+	
+	<pre class="programlisting">
+<span class="hl-keyword">public</span> <span class="hl-keyword">interface</span> Twitter {
+
+   <span class="hl-keyword">boolean</span> isAuthorizedForUser();
+
+   DirectMessageOperations directMessageOperations();
+
+   FriendOperations friendOperations();
+
+   GeoOperations geoOperations();
+
+   ListOperations listOperations();
+
+   SearchOperations searchOperations();
+
+   TimelineOperations timelineOperations();
+
+   UserOperations userOperations();
+
+}
+	</pre>		
+	
+	<p>
+		The <code class="methodname">isAuthorizedForUser</code> helps determine if the <code class="interfacename">Twitter</code> instance has been created with credentials to perform on behalf of a user.
+		It will return true if it is capable of performing operations requiring authorization; false otherwise. 			
+	</p>
+	
+	<p>
+		The remaining six methods return sub-APIs, partitioning the Twitter service API into divisions targeting specific facets of Twitter functionality.
+		These sub-APIs are defined by interfaces described in <a class="xref" href="#table-twitter-sub-apis" title="Table&nbsp;3.1.&nbsp;Twitter's Sub-APIs">Table&nbsp;3.1, &#8220;Twitter's Sub-APIs&#8221;</a>.
+	</p>
+	
+	<div class="table"><a name="table-twitter-sub-apis"></a><p class="title"><b>Table&nbsp;3.1.&nbsp;Twitter's Sub-APIs</b></p><div class="table-contents">
+		
+		<table summary="Twitter's Sub-APIs" style="border-collapse: collapse;border-top: 0.5pt solid ; border-bottom: 0.5pt solid ; border-left: 0.5pt solid ; border-right: 0.5pt solid ; "><colgroup><col align="left"><col></colgroup><thead><tr><th style="border-right: 0.5pt solid ; border-bottom: 0.5pt solid ; " align="center">Sub-API Interface</th><th style="border-bottom: 0.5pt solid ; " align="center">Description</th></tr></thead><tbody><tr><td style="border-right: 0.5pt solid ; border-bottom: 0.5pt solid ; " align="left">DirectMessageOperations</td><td style="border-bottom: 0.5pt solid ; ">Reading and sending direct messages.</td></tr><tr><td style="border-right: 0.5pt solid ; border-bottom: 0.5pt solid ; " align="left">FriendOperations</td><td style="border-bottom: 0.5pt solid ; ">Retrieving a user's list of friends and followers and following/unfollowing users.</td></tr><tr><td style="border-right: 0.5pt solid ; border-bottom: 0.5pt solid ; " align="left">GeoOperations</td><td style="border-bottom: 0.5pt solid ; ">Working with locations.</td></tr><tr><td style="border-right: 0.5pt solid ; border-bottom: 0.5pt solid ; " align="left">ListOperations</td><td style="border-bottom: 0.5pt solid ; ">Maintaining, subscribing to, and unsubscribing from user lists</td></tr><tr><td style="border-right: 0.5pt solid ; border-bottom: 0.5pt solid ; " align="left">SearchOperations</td><td style="border-bottom: 0.5pt solid ; ">Searching tweets and viewing search trends</td></tr><tr><td style="border-right: 0.5pt solid ; border-bottom: 0.5pt solid ; " align="left">TimelineOperations</td><td style="border-bottom: 0.5pt solid ; ">Reading timelines and posting tweets.</td></tr><tr><td style="border-right: 0.5pt solid ; " align="left">UserOperations</td><td style="">Retrieving user profile data.</td></tr></tbody></table>
+	</div></div><br class="table-break">
+	
+	<p>
+		What follows is a survey of common tasks you may perform with <code class="interfacename">Twitter</code> and its sub-APIs.
+		For complete details on the Spring Social's entire Twitter API binding, refer to the JavaDoc.
+	</p>
+
+	<div class="section" title="3.1&nbsp;Retrieving a user's Twitter profile data"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="twitter-getProfile"></a>3.1&nbsp;Retrieving a user's Twitter profile data</h2></div></div></div>
+		
+		
+		<p>
+			To get a user's Twitter profile, call <code class="interfacename">UserOperations</code>' <code class="methodname">getUserProfile()</code>:
+		</p>
+		
+		<pre class="programlisting">
+TwitterProfile profile = twitter.userOperations().getUserProfile();
+		</pre>
+		
+		<p>
+			This returns a <code class="classname">TwitterProfile</code> object containing profile data for the authenticated user. 
+			This profile information includes the user's Twitter screen name, their name, location, description, and the date that they created their Twitter account. 
+			Also included is a URL to their profile image.
+		</p>
+		
+		<p>
+			If you want to retrieve the user profile for a specific user other than the authenticated user, you can so do by passing the user's screen name as a parameter to <code class="methodname">getUserProfile()</code>:
+		</p>
+		
+		<pre class="programlisting">
+TwitterProfile profile = twitter.userOperations().getUserProfile(<span class="hl-string">"habuma"</span>);
+		</pre>
+		
+		<p>
+			If all you need is the screen name for the authenticating user, then call <code class="methodname">UserOperations.getScreenName()</code>:
+		</p>
+		
+		<pre class="programlisting">
+String profileId = twitter.userOperations().getScreenName();
+		</pre>
+
+	</div>
+
+	<div class="section" title="3.2&nbsp;Tweeting"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="twitter-status"></a>3.2&nbsp;Tweeting</h2></div></div></div>
+		
+		
+		<p>
+			To post a message to Twitter the simplest thing to do is to pass the message to the <code class="methodname">updateStatus()</code> method provided by <code class="interfacename">TimelineOperations</code>:
+		</p>
+		
+		<pre class="programlisting">
+twitter.timelineOperations().updateStatus(<span class="hl-string">"Spring Social is awesome!"</span>)
+		</pre>
+		
+		<p>
+			Optionally, you may also include metadata about the tweet, such as the location (latitude and longitude) you are tweeting from. 
+			For that, pass in a <code class="classname">StatusDetails</code> object, setting the location property:
+		</p>
+		
+		<pre class="programlisting">
+StatusDetails statusDetails = <span class="hl-keyword">new</span> StatusDetails().setLocation(<span class="hl-number">51.502f</span>, -<span class="hl-number">0.126f</span>);
+twitter.timelineOperations().updateStatus(<span class="hl-string">"I'm tweeting from London!"</span>, statusDetails)
+		</pre>
+		
+		<p>
+			To have Twitter display the location in a map (on the Twitter web site) then you should also set the <code class="code">displayCoordinates</code> property to <code class="code">true</code>:
+		</p>
+		
+		<pre class="programlisting">
+StatusDetails statusDetails = <span class="hl-keyword">new</span> StatusDetails().setLocation(<span class="hl-number">51.502f</span>, -<span class="hl-number">0.126f</span>).setDisplayCoordinates(true);
+twitter.timelineOperations().updateStatus(<span class="hl-string">"I'm tweeting from London!"</span>, statusDetails)
+		</pre>
+		
+		
+		<p>
+			If you'd like to retweet another tweet (perhaps one found while searching or reading the Twitter timeline), call the <code class="methodname">retweet()</code> method, passing in the ID of the tweet to be retweeted:
+		</p>
+		
+		<pre class="programlisting">
+<span class="hl-keyword">long</span> tweetId = tweet.getId();
+twitter.timelineOperations().retweet(tweetId);
+		</pre>
+		
+		<p>
+			Note that Twitter disallows repeated tweets. 
+			Attempting to tweet or retweet the same message multiple times will result in a <code class="classname">DuplicateTweetException</code> being thrown.
+		</p>
+	</div>
+
+	<div class="section" title="3.3&nbsp;Reading Twitter timelines"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="twitter-timelines"></a>3.3&nbsp;Reading Twitter timelines</h2></div></div></div>
+		 
+		
+		<p>
+			From a Twitter user's perspective, Twitter organizes tweets into four different timelines:
+		</p>
+		
+		<div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>User - Includes tweets posted by the user.</p></li><li class="listitem"><p>Friends - Includes tweets from the user's timeline and the timeline of anyone that they follow, with the exception of any retweets.</p></li><li class="listitem"><p>Home - Includes tweets from the user's timeline and the timeline of anyone that they follow.</p></li><li class="listitem"><p>Public - Includes tweets from all Twitter users.</p></li></ul></div>
+		
+		<p>
+			To be clear, the only difference between the home timeline and the friends timeline is that the friends timeline excludes retweets.
+		</p>
+		
+		<p>
+			<code class="interfacename">TimelineOperations</code> also supports reading of tweets from one of the available Twitter timelines. 
+			To retrieve the 20 most recent tweets from the public timeline, use the <code class="methodname">getPublicTimeline()</code> method:
+		</p>
+		
+		<pre class="programlisting">
+List&lt;Tweet&gt; tweets = twitter.timelineOperations().getPublicTimeline();
+		</pre>
+		
+		<p>
+			<code class="methodname">getHomeTimeline()</code> retrieves the 20 most recent tweets from the user's home timeline:
+		</p>
+		
+		<pre class="programlisting">
+List&lt;Tweet&gt; tweets = twitter.timelineOperations().getHomeTimeline();
+		</pre>
+		
+		<p>
+			Similarly, <code class="methodname">getFriendsTimeline()</code> retrieves the 20 most recent tweets from the user's friends timeline:
+		</p>
+		
+		<pre class="programlisting">
+List&lt;Tweet&gt; tweets = twitter.timelineOperations().getFriendsTimeline();
+		</pre>
+		
+		<p>
+			To get tweets from the authenticating user's own timeline, call the <code class="methodname">getUserTimeline()</code> method:
+		</p>
+		
+		<pre class="programlisting">
+List&lt;Tweet&gt; tweets = twitter.timelineOperations().getUserTimeline();
+		</pre>
+		
+		<p>
+			If you'd like to retrieve the 20 most recent tweets from a specific user's timeline (not necessarily the authenticating user's timeline), pass the user's screen name in as a parameter to <code class="methodname">getUserTimeline()</code>:
+		</p>
+		
+		<pre class="programlisting">
+List&lt;Tweet&gt; tweets = twitter.timelineOperations().getUserTimeline(<span class="hl-string">"rclarkson"</span>);
+		</pre>
+		
+		<p>
+			In addition to the four Twitter timelines, you may also want to get a list of tweets mentioning the user. 
+			The <code class="methodname">getMentions()</code> method returns the 20 most recent tweets that mention the authenticating user:
+		</p>
+		
+		<pre class="programlisting">
+List&lt;Tweet&gt; tweets = twitter.timelineOperations().getMentions();
+		</pre>
+		
+	</div>
+
+	<div class="section" title="3.4&nbsp;Friends and Followers"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="twitter-friends"></a>3.4&nbsp;Friends and Followers</h2></div></div></div>
+		
+		
+		<p>
+			A key social concept in Twitter is the ability for one user to "follow" another user.
+			The followed user's tweets will appear in the following user's home and friends timelines.
+			To follow a user on behalf of the authenticating user, call the <code class="interfacename">FriendOperations</code>' <code class="methodname">follow()</code> method:
+		</p>
+		
+		<pre class="programlisting">
+twitter.friendOperations().follow(<span class="hl-string">"habuma"</span>);
+		</pre>
+
+		<p>
+			Similarly, you may stop following a user using the <code class="methodname">unfollow()</code> method:
+		</p>
+
+		<pre class="programlisting">
+twitter.friendOperations().unfollow(<span class="hl-string">"habuma"</span>);
+		</pre>
+		
+		<p>
+			If you want to see who a particular user is following, use the <code class="methodname">getFriends()</code> method:
+		</p>
+
+		<pre class="programlisting">
+List&lt;TwitterProfile&gt; friends = twitter.friendOperations().getFriends(<span class="hl-string">"habuma"</span>);
+		</pre>
+
+		<p>
+			On the other hand, you may be interested in seeing who is following a given user.
+			In that case the <code class="methodname">getFollowers()</code> method may be useful:
+		</p>
+
+		<pre class="programlisting">
+List&lt;TwitterProfile&gt; followers = twitter.friendOperations().getFollowers(<span class="hl-string">"habuma"</span>);
+		</pre>
+	</div>
+	
+	<div class="section" title="3.5&nbsp;Twitter User Lists"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="twitter-lists"></a>3.5&nbsp;Twitter User Lists</h2></div></div></div>
+		
+		
+		<p>
+			In addition to following other users, Twitter provides the ability for users to collect users in lists, regardless of whether or not they are being followed.
+			These lists may be private to the use who created them or may be public for others to read and subscribe to.
+		</p>
+		
+		<p>
+			To create a new list, use <code class="interfacename">ListOperations</code>' <code class="methodname">createList()</code> method:
+		</p>
+		
+		<pre class="programlisting">
+UserList familyList = twitter.listOperations().createList(
+       <span class="hl-string">"My Family"</span>, <span class="hl-string">"Tweets from my immediate family members"</span>, false);
+		</pre>
+		
+		<p>
+			<code class="methodname">createList()</code> takes three parameters and returns a <code class="classname">UserList</code> object representing the newly created list.
+			The first parameter is the name of the list.
+			The second parameter is a brief description of the list.
+			The final parameter is a boolean indicating whether or not the list is public.
+			Here, false indicates that the list should be private.
+			
+		</p>
+		
+		<p>
+			Once the list is created, you may add members to the list by calling the <code class="methodname">addToList()</code> method:
+		</p>
+
+		<pre class="programlisting">
+twitter.listOperations().addToList(familyList.getSlug(), <span class="hl-string">"artnames"</span>);
+		</pre>
+		
+		<p>
+			The first parameter given to <code class="methodname">addToList()</code> is the list slug (which is readily available from the <code class="classname">UserList</code> object).
+			The second parameter is the screen name of a user to add to the list.
+		</p>
+		
+		<p>
+			To remove a member from a list, pass the same parameters to <code class="methodname">removedFromList()</code>:
+		</p>
+
+		<pre class="programlisting">
+twitter.listOperations().removeFromList(familyList.getSlug(), <span class="hl-string">"artnames"</span>);
+		</pre>
+
+
+		<p>
+			You can also subscribe to a list on behalf of the authenticating user.
+			Subscribing to a list has the effect of including tweets from the list's members in the user's home timeline.
+			The <code class="methodname">subscribe()</code> method is used to subscribe to a list:
+		</p>
+
+		<pre class="programlisting">
+twitter.listOperations().subscribe(<span class="hl-string">"habuma"</span>, <span class="hl-string">"music"</span>);
+		</pre>			
+		
+		<p>
+			Here, <code class="methodname">subscribe()</code> is given the list owner's screen name ("habuma") and the list slug ("music").
+		</p>
+		
+		<p>
+			Similarly, you may unsubscribe from a list with the <code class="methodname">unsubscribe()</code> method:
+		</p>
+
+		<pre class="programlisting">
+twitter.listOperations().unsubscribe(<span class="hl-string">"habuma"</span>, <span class="hl-string">"music"</span>);
+		</pre>			
+	</div>		
+
+	<div class="section" title="3.6&nbsp;Searching Twitter"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="twitter-search"></a>3.6&nbsp;Searching Twitter</h2></div></div></div>
+		
+		
+		<p>
+			<code class="interfacename">SearchOperations</code> enables you to search the public timeline for tweets containing some text through its <code class="methodname">search()</code> method.
+		</p>
+		
+		<p>
+			For example, to search for tweets containing "#spring":
+		</p>
+		
+		<pre class="programlisting">
+SearchResults results = twitter.searchOperations().search(<span class="hl-string">"#spring"</span>);
+		</pre>
+		
+		<p>
+			The <code class="methodname">search()</code> method will return a <code class="classname">SearchResults</code> object that includes a list of 50 most recent matching tweets as well as some metadata concerning the result set. 
+			The metadata includes the maximum tweet ID in the search results list as well as the ID of a tweet that precedes the resulting tweets. 
+			The <code class="code">sinceId</code> and <code class="code">maxId</code> properties effectively define the boundaries of the result set. 
+			Additionally, there's a boolean <code class="code">lastPage</code> property that, if <code class="code">true</code>, indicates that this result set is the page of results.
+		</p>
+		
+		<p>
+			To gain better control over the paging of results, you may choose to pass in the page and results per page to <code class="methodname">search()</code>:
+		</p>
+		
+		<pre class="programlisting">
+SearchResults results = twitter.searchOperations().search(<span class="hl-string">"#spring"</span>, <span class="hl-number">2</span>, <span class="hl-number">10</span>);
+		</pre>
+		
+		<p>
+			Here, we're asking for the 2nd page of results where the pages have 10 tweets per page.
+		</p>
+		
+		<p>
+			Finally, if you'd like to confine the bounds of the search results to fit between two tweet IDs, you may pass in the since and maximum tweet ID values to <code class="methodname">search()</code>:
+		</p>
+		
+		<pre class="programlisting">
+SearchResults results = twitter.searchOperations().search(<span class="hl-string">"#spring"</span>, <span class="hl-number">2</span>, <span class="hl-number">10</span>, <span class="hl-number">145962</span>, <span class="hl-number">210112</span>);
+		</pre>
+		
+		<p>
+			This ensures that the result set will not contain any tweets posted before the tweet whose ID is 146962 nor any tweets posted after the tweet whose ID is 210112.
+		</p>
+	</div>
+
+	<div class="section" title="3.7&nbsp;Sending and receiving direct messages"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="twitter-directMessages"></a>3.7&nbsp;Sending and receiving direct messages</h2></div></div></div>
+		
+		
+		<p>
+			In addition to posting tweets to the public timelines, Twitter also supports sending of private messages directly to a given user. 
+			<code class="classname">DirectMessageOperations</code>' <code class="methodname">sendDirectMessage()</code> method can be used to send a direct message to another user:
+		</p>
+		
+		<pre class="programlisting">
+twitter.directMessageOperations().sendDirectMessage(<span class="hl-string">"kdonald"</span>, <span class="hl-string">"You going to the Dolphins game?"</span>)
+		</pre>
+		
+		<p>
+			<code class="classname">DirectMessageOperations</code> can also be used to read direct messages received by the authenticating user through its <code class="methodname">getDirectMessagesReceived()</code> method:
+		</p>
+		
+		<pre class="programlisting">
+List&lt;DirectMessage&gt; twitter.directMessageOperations().getDirectMessagesReceived();
+		</pre>
+		
+		<p>
+			<code class="methodname">getDirectMessagesReceived()</code> will return the 20 most recently received direct messages.
+		</p>
+		
+	</div>
+</div>
+</div><!--Begin LoopFuse code--><script src="http://loopfuse.net/webrecorder/js/listen.js" type="text/javascript"></script><script type="text/javascript">
+_lf_cid = "LF_48be82fa";
+_lf_remora();
+</script><!--End LoopFuse code--></body></html>

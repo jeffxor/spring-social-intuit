@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<qbo:SearchResults xmlns="http://www.intuit.com/sb/cdm/v2"
+	xmlns:qbp="http://www.intuit.com/sb/cdm/qbopayroll/v1" xmlns:qbo="http://www.intuit.com/sb/cdm/qbo">
+	<qbo:CdmCollections xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:type="Payments">
+		<Payment>
+			<Id idDomain="QBO">4</Id>
+			<SyncToken>0</SyncToken>
+			<MetaData>
+				<CreateTime>2012-01-04T20:46:15-08:00</CreateTime>
+				<LastUpdatedTime>2012-01-04T20:46:15-08:00</LastUpdatedTime>
+			</MetaData>
+			<Header>
+				<DocNumber>124</DocNumber>
+				<TxnDate>2012-01-04-08:00</TxnDate>
+				<Note>Does this work correctly</Note>
+				<CustomerId idDomain="QBO">1</CustomerId>
+				<DepositToAccountId idDomain="QBO">3</DepositToAccountId>
+				<PaymentMethodId idDomain="QBO">2</PaymentMethodId>
+				<TotalAmt>1000.00</TotalAmt>
+				<ProcessPayment>false</ProcessPayment>
+			</Header>
+			<Line>
+				<Amount>1000.00</Amount>
+				<TxnId idDomain="QBO">3</TxnId>
+			</Line>
+		</Payment>
+		<Payment>
+			<Id idDomain="QBO">1</Id>
+			<SyncToken>2</SyncToken>
+			<MetaData>
+				<CreateTime>2012-01-04T19:32:40-08:00</CreateTime>
+				<LastUpdatedTime>2012-01-04T20:39:16-08:00</LastUpdatedTime>
+			</MetaData>
+			<Header>
+				<DocNumber>123</DocNumber>
+				<TxnDate>2012-01-04-08:00</TxnDate>
+				<Note>Free Cash Money For Being Awesome</Note>
+				<CustomerId idDomain="QBO">2</CustomerId>
+				<DepositToAccountId idDomain="QBO">3</DepositToAccountId>
+				<PaymentMethodId idDomain="QBO">1</PaymentMethodId>
+				<TotalAmt>100.00</TotalAmt>
+				<ProcessPayment>false</ProcessPayment>
+			</Header>
+			<Line>
+				<Amount>100.00</Amount>
+				<TxnId idDomain="QBO">2</TxnId>
+			</Line>
+		</Payment>
+	</qbo:CdmCollections>
+	<qbo:Count>2</qbo:Count>
+	<qbo:CurrentPage>1</qbo:CurrentPage>
+</qbo:SearchResults>
