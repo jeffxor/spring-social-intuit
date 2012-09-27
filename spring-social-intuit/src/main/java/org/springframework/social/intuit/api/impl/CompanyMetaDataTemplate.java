@@ -4,6 +4,7 @@ import org.simpleframework.xml.Serializer;
 import org.simpleframework.xml.convert.AnnotationStrategy;
 import org.simpleframework.xml.core.Persister;
 
+import org.springframework.social.MissingAuthorizationException;
 import org.springframework.social.intuit.api.CompanyMetaData;
 import org.springframework.social.intuit.api.CompanyMetaDataOperations;
 import org.springframework.social.intuit.api.RestResponse;
@@ -24,6 +25,7 @@ public class CompanyMetaDataTemplate implements CompanyMetaDataOperations {
 	}
 
 	public CompanyMetaData getCompanyMetaData() {
+		requireAuthorization();
 		String response = restTemplate.getForObject(url, String.class);
 		RestResponse restResponse = CompanyMetaDataTemplate.serializeForObject(RestResponse.class, response);
 		if(restResponse != null){
@@ -40,6 +42,12 @@ public class CompanyMetaDataTemplate implements CompanyMetaDataOperations {
 			e.printStackTrace();
 		}		
 		return null;
+	}
+	
+	protected void requireAuthorization() {
+		if (!isAuthorized) {
+			throw new MissingAuthorizationException();
+		}
 	}
 
 }

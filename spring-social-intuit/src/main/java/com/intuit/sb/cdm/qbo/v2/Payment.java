@@ -14,6 +14,7 @@ import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 import org.jvnet.jaxb2_commons.lang.Equals;
 import org.jvnet.jaxb2_commons.lang.EqualsStrategy;
@@ -47,6 +48,7 @@ import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
  * 
  * 
  */
+@XmlRootElement(name = "Payment", namespace = "http://www.intuit.com/sb/cdm/v2")
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Payment", propOrder = {
     "header",

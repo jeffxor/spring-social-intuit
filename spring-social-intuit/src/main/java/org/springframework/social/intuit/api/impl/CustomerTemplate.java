@@ -46,13 +46,23 @@ public class CustomerTemplate implements CustomerOperations {
 
 	public Customer create(Customer customer) {
 		requireAuthorization();
-		return restTemplate.postForObject("{baseURL}/resource/customer/v2/{companyId}/", customer, Customer.class, baseUrl, companyId);
+		return restTemplate.postForObject("{baseURL}/resource/customer/v2/{companyId}", customer, Customer.class, baseUrl, companyId);
 	}
 
+	public Customer save(Customer customer) {
+		requireAuthorization();
+		if(customer.getId() != null && customer.getId().getValue() != null){
+			return update(customer);
+		}
+		else {
+			return create(customer);
+		}
+	}
+	
 	public boolean delete(Customer customer) {
 		requireAuthorization();
-		Customer response = restTemplate.postForObject("{baseURL}/resource/customer/v2/{companyId}/{customerID}?methodx=delete", customer, Customer.class, baseUrl, companyId, customer.getId().getValue());
-		return (response.getId() != null);
+		Customer response = restTemplate.postForObject("{baseURL}/resource/customer/v2/{companyId}/{customerID}?methodx=delete", buildDelete(customer), Customer.class, baseUrl, companyId, customer.getId().getValue());
+		return (response.getId() == null);
 	}
 	
 	private Customer buildDelete(Customer customer){

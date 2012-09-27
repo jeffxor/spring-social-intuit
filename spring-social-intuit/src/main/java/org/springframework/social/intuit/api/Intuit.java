@@ -9,6 +9,8 @@ public interface Intuit extends ApiBinding {
 	 */
 	UserOperations userOperations();
 	
+	AccountOperations accountOperations();
+	
 	CompanyMetaDataOperations companyMetaDataOperations();
 	
 	CustomerOperations customerOperations();
@@ -18,5 +20,7 @@ public interface Intuit extends ApiBinding {
 	PaymentMethodOperations paymentMethodOperations();
 	
 	InvoiceOperations invoiceOperations();
+	
+	ItemOperations itemOperations();
 
 }

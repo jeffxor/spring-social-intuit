@@ -1,7 +1,0 @@
-#Fri Dec 23 12:10:49 EST 2011
-afterTasks=afterEclipseImport;
-beforeTasks=cleanEclipse;eclipse;
-eclipse.preferences.version=1
-enableAfterTasks=true
-enableBeforeTasks=true
-projects=;docs;spring-social-intuit;

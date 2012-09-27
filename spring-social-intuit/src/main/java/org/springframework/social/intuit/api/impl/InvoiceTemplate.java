@@ -59,13 +59,23 @@ public class InvoiceTemplate implements InvoiceOperations {
 
 	public Invoice create(Invoice invoice) {
 		requireAuthorization();
-		return restTemplate.postForObject("{baseURL}/resource/invoice/v2/{companyId}/", invoice, Invoice.class, baseUrl, companyId);
+		return restTemplate.postForObject("{baseURL}/resource/invoice/v2/{companyId}", invoice, Invoice.class, baseUrl, companyId);
+	}
+
+	public Invoice save(Invoice invoice) {
+		requireAuthorization();
+		if(invoice.getId() != null && invoice.getId().getValue() != null){
+			return update(invoice);
+		}
+		else {
+			return create(invoice);
+		}
 	}
 
 	public boolean delete(Invoice invoice) {
 		requireAuthorization();
-		Invoice response = restTemplate.postForObject("{baseURL}/resource/customer/v2/{companyId}/{customerID}?methodx=delete", invoice, Invoice.class, baseUrl, companyId, invoice.getId().getValue());
-		return (response.getId() != null);
+		Invoice response = restTemplate.postForObject("{baseURL}/resource/invoice/v2/{companyId}/{customerID}?methodx=delete", buildDelete(invoice), Invoice.class, baseUrl, companyId, invoice.getId().getValue());
+		return (response.getId() == null);
 	}
 
 	protected void requireAuthorization() {
@@ -74,4 +84,11 @@ public class InvoiceTemplate implements InvoiceOperations {
 		}
 	}
 
+	private Invoice buildDelete(Invoice invoice){
+		Invoice delete = new Invoice();
+		delete.setSyncToken(invoice.getSyncToken());
+		delete.setId(invoice.getId());
+		
+		return delete;
+	}
 }

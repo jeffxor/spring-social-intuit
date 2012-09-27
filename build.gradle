@@ -93,12 +93,13 @@ configure(javaprojects) {
     // add tasks for finding and publishing .xsd files
     apply from: "$buildSrcDir/schema-publication.gradle"
 
-    springSocialVersion = '1.0.1.RELEASE'
+    springSocialVersion = '1.0.2.RELEASE'
     jacksonVersion = '1.9.2'
     junitVersion = '4.9'
     mockitoVersion = '1.8.5'
-    springVersion = '3.1.0.RELEASE'
-    springSecurityCryptoVersion = '3.1.0.RELEASE'
+    springVersion = '3.1.2.RELEASE'
+    springTestMVCVersion = '1.0.0.BUILD-SNAPSHOT'
+    springSecurityCryptoVersion = '3.1.2.RELEASE'
     springWSVersion = '2.0.3.RELEASE'
 	
     sourceSets {
@@ -119,6 +120,7 @@ configure(javaprojects) {
         testCompile "junit:junit:$junitVersion"
         testCompile "org.mockito:mockito-all:$mockitoVersion"
         testCompile "org.springframework:spring-test:$springVersion"
+        testCompile "org.springframework:spring-test-mvc:$springTestMVCVersion"
     }
 
     // enable all compiler warnings (GRADLE-1077)
@@ -144,7 +146,6 @@ project('spring-social-intuit') {
        compile "javax.xml.bind:jaxb-api:2.2.6"
        compile "com.sun.xml.bind:jaxb-impl:2.2.4"
        compile "org.jvnet.jaxb2_commons:jaxb2-basics-runtime:0.5.3"
-//       compile "com.intuit.code.devkit:ipp-java-devkit:2.0.1"
        compile "com.thoughtworks.xstream:xstream:1.4.2"
        compile "joda-time:joda-time:1.6.2"
        compile "org.simpleframework:simple-xml:2.6.2"

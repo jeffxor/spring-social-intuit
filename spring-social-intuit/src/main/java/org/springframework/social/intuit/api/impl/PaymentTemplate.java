@@ -45,6 +45,7 @@ public class PaymentTemplate implements PaymentOperations {
 		requireAuthorization();
 		MultiValueMap<String, String> criteria = new LinkedMultiValueMap<String, String>();
 		criteria.add("Filter", "CustomerId :EQUALS: " + customer.getId().getValue());
+		criteria.add("Sort", "TxnDate NewestToOldest");
 		SearchResults response = restTemplate.postForObject("{baseURL}/resource/payments/v2/{companyId}", criteria, SearchResults.class, baseUrl, companyId);
 		if(response != null){
 			return ((Payments)response.getCdmCollections()).getPayment();
@@ -54,18 +55,27 @@ public class PaymentTemplate implements PaymentOperations {
 
 	public Payment update(Payment payment) {
 		requireAuthorization();
-		return restTemplate.postForObject("{baseURL}/resource/payment/v2/{companyId}/{customerID}", payment, Payment.class, baseUrl, companyId, payment.getId().getValue());
+		return restTemplate.postForObject("{baseURL}/resource/payment/v2/{companyId}/{paymentId}", payment, Payment.class, baseUrl, companyId, payment.getId().getValue());
 	}
 
 	public Payment create(Payment payment) {
 		requireAuthorization();
-		return restTemplate.postForObject("{baseURL}/resource/payment/v2/{companyId}/", payment, Payment.class, baseUrl, companyId);
+		return restTemplate.postForObject("{baseURL}/resource/payment/v2/{companyId}", payment, Payment.class, baseUrl, companyId);
 	}
 
+	public Payment save(Payment payload) {
+		requireAuthorization();
+		if(payload.getId() != null && payload.getId().getValue() != null){
+			return update(payload);
+		}
+		else {
+			return create(payload);
+		}
+	}
 	public boolean delete(Payment payment) {
 		requireAuthorization();
-		Payment response = restTemplate.postForObject("{baseURL}/resource/customer/v2/{companyId}/{customerID}?methodx=delete", payment, Payment.class, baseUrl, companyId, payment.getId().getValue());
-		return (response.getId() != null);
+		Payment response = restTemplate.postForObject("{baseURL}/resource/payment/v2/{companyId}/{paymentId}?methodx=delete", payment, Payment.class, baseUrl, companyId, payment.getId().getValue());
+		return (response.getId() == null);
 	}
 
 	protected void requireAuthorization() {

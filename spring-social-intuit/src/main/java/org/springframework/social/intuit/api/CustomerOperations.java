@@ -10,6 +10,13 @@ public interface CustomerOperations {
 	public List<Customer> getCustomers();
 	public Customer update(Customer customer);
 	public Customer create(Customer customer);
+	/**
+	 * Depending on if there is a idType create or update is called. Essentially
+	 * a wrapper around create and update to hide the logic.
+	 * @param invoice Customer item to be persisted to Intuit.
+	 * @return Saved Intuit object containing the idType of saved Intuit item.
+	 */
+	public Customer save(Customer customer);		
 	public boolean delete(Customer customer);
 
 }
