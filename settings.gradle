@@ -16,5 +16,4 @@
 
 rootProject.name = 'spring-social-intuit'
 
-include 'docs'
 include 'spring-social-intuit'

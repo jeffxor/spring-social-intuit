@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<chapter xmlns="http://docbook.org/ns/docbook" version="5.0" xml:id="apis" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<title>Intuit API Binding</title>
+  
+	<para>
+		Spring Social Intuit offers integration with Intuti's REST API through the <interfacename>Intuit</interfacename> interface and its implementation, <classname>IntuitTemplate</classname>.			
+	</para>
+
+	<para>
+		Creating an instance of <classname>IntuitTemplate</classname> involves invoking its constructor, passing in the application's OAuth credentials and an access token/secret pair authorizing the application to act on a user's behalf. 
+		For example:
+	</para>
+	
+	<programlisting language="java"><![CDATA[
+String consumerKey = "..."; // The application's consumer key
+String consumerSecret = "..."; // The application's consumer secret
+String accessToken = "..."; // The access token granted after OAuth authorization
+String accessTokenSecret = "..."; // The access token secret granted after OAuth authorization
+Intuit intuit = new IntuitTemplate(consumerKey, consumerSecret, accessToken, accessTokenSecret);]]>
+	</programlisting>
+	
+	<para>
+		If you are using Spring Social's <ulink url="http://static.springsource.org/spring-social/docs/1.0.x/reference/html/serviceprovider.html">service provider framework</ulink>, you can get an instance of <interfacename>Intuit</interfacename> from a <interfacename>Connection</interfacename>. 
+		For example, the following snippet calls <methodname>getApi()</methodname> on a connection to retrieve a <interfacename>Intuit</interfacename>:
+	</para>				
+	
+	<programlisting language="java"><![CDATA[
+Connection<Intuit> connection = connectionRepository.findPrimaryConnection(Intuit.class);
+Intuit intuti = connection != null ? connection.getApi() : new IntuitTemplate();]]>
+	</programlisting>
+	
+	<para>
+		Here, <interfacename>ConnectionRepository</interfacename> is being asked for the primary connection that the current user has with Intuit.
+		If connection to Intuit is found, a call to <methodname>getApi()</methodname> retrieves a <interfacename>Intuit</interfacename> instance that is configured with the connection details received when the connection was first established.
+		If there is no connection, a default instance of <classname>IntuitTemplate</classname> is created.
+	</para>
+	
+	<para>
+		Once you have a <interfacename>Intuit</interfacename>, you can perform a several operations against Intuit.
+		<interfacename>Intuit</interfacename> is defined as follows:
+	</para>
+		
+</chapter>
