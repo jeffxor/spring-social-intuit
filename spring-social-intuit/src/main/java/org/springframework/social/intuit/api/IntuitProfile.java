@@ -5,8 +5,9 @@ import java.io.Serializable;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Root;
 
-import com.intuit.sb.cdm.qbo.v2.QboUser;
-import com.intuit.sb.cdm.qbo.v2.QboUserCompanyMapping;
+import com.intuit.sb.cdm.qbo.QboUser;
+import com.intuit.sb.cdm.qbo.QboUserCompanyMapping;
+
 
 /**
  * Model class representing a Intuit user's profile information.

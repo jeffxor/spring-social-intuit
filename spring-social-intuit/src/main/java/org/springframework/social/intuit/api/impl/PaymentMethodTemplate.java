@@ -6,9 +6,9 @@ import org.springframework.social.MissingAuthorizationException;
 import org.springframework.social.intuit.api.PaymentMethodOperations;
 import org.springframework.web.client.RestTemplate;
 
-import com.intuit.sb.cdm.qbo.v2.PaymentMethod;
-import com.intuit.sb.cdm.qbo.v2.PaymentMethods;
-import com.intuit.sb.cdm.qbo.v2.SearchResults;
+import com.intuit.sb.cdm.v2.PaymentMethod;
+import com.intuit.sb.cdm.v2.PaymentMethods;
+import com.intuit.sb.cdm.qbo.SearchResults;
 
 public class PaymentMethodTemplate implements PaymentMethodOperations {
 

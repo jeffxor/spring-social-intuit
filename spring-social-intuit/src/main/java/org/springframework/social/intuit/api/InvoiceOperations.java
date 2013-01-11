@@ -2,8 +2,9 @@ package org.springframework.social.intuit.api;
 
 import java.util.List;
 
-import com.intuit.sb.cdm.qbo.v2.Customer;
-import com.intuit.sb.cdm.qbo.v2.Invoice;
+import com.intuit.sb.cdm.v2.Customer;
+import com.intuit.sb.cdm.v2.Invoice;
+
 
 public interface InvoiceOperations {
 	

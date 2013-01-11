@@ -8,10 +8,10 @@ import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 
-import com.intuit.sb.cdm.qbo.v2.Customer;
-import com.intuit.sb.cdm.qbo.v2.Invoice;
-import com.intuit.sb.cdm.qbo.v2.Invoices;
-import com.intuit.sb.cdm.qbo.v2.SearchResults;
+import com.intuit.sb.cdm.v2.Customer;
+import com.intuit.sb.cdm.v2.Invoice;
+import com.intuit.sb.cdm.v2.Invoices;
+import com.intuit.sb.cdm.qbo.SearchResults;
 
 public class InvoiceTemplate implements InvoiceOperations {
 	

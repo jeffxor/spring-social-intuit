@@ -5,7 +5,7 @@ import org.springframework.social.intuit.api.IntuitProfile;
 import org.springframework.social.intuit.api.UserOperations;
 import org.springframework.web.client.RestTemplate;
 
-import com.intuit.sb.cdm.qbo.v2.QboUser;
+import com.intuit.sb.cdm.qbo.QboUser;
 
 public class UserTemplate implements UserOperations {
 	
@@ -42,7 +42,7 @@ public class UserTemplate implements UserOperations {
 	}
 
 	public String getBaseUrl() {
-		return getUserProfile().getBaseUrl();	
+		return "https://qbo.sbfinance.intuit.com";	
 	}
 	
 	protected void requireAuthorization() {

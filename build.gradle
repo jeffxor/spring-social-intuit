@@ -1,16 +1,19 @@
 buildscript {
     repositories {
         maven { url 'http://repo.springsource.org/plugins-release' }
+	maven { url "http://repo1.maven.org/maven2/" }
     }
     dependencies {
         classpath 'org.springframework.build.gradle:docbook-reference-plugin:0.2.2'
-    }
+	classpath 'no.entitas.gradle.jaxb:gradle-jaxb-plugin:2.0'   
+   }
 }
 
 configure(allprojects) {
     apply plugin: 'java'
     apply plugin: 'eclipse'
     apply plugin: 'idea'
+    apply plugin: 'jaxb'
 
     group = 'org.springframework.social'
 
@@ -32,11 +35,15 @@ configure(allprojects) {
     [compileJava, compileTestJava]*.options*.compilerArgs = ['-Xlint:none']
 
     sourceSets.test.resources.srcDirs = ['src/test/resources', 'src/test/java']
+    sourceSets.main.resources.srcDirs = ['src/main/resources', 'src/main/java', '$buildDir/generated-src/jaxb/main']
+    sourceSets.main.jaxb {
+            srcDir 'src/main/resources/xsd'
+            include 'qbo.xsd'
+    }
 
     test.systemProperty("java.awt.headless", "true")
 
     repositories {
-//        maven { url "http://forge.code.intuit.com/nexus/content/repositories/releases" }
         maven { url "http://maven.springframework.org/release" }
         maven { url "http://repo.springsource.org/snapshot" }
         maven { url "http://repo.springsource.org/milestone" }
@@ -44,6 +51,7 @@ configure(allprojects) {
     }
 
     dependencies {
+	jaxb 'com.sun.xml.bind:jaxb-xjc:2.2.4-1'
         testCompile ("org.hamcrest:hamcrest-library:$hamcrestVersion")
         testCompile ("junit:junit-dep:$junitVersion")
         testCompile ("org.mockito:mockito-core:$mockitoVersion")
@@ -125,7 +133,7 @@ configure(rootProject) {
     dependencies { // for integration tests
     }
     
-    task api(type: Javadoc) {
+    task api(type: Javadoc, dependsOn:[generateSchemaSource]) {
         group = 'Documentation'
         description = 'Generates aggregated Javadoc API documentation.'
         title = "${rootProject.description} ${version} API"
