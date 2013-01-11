@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.intuit.com/sb/cdm/v2" targetNamespace="http://www.intuit.com/sb/cdm/v2" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:annotation>
+		<xs:documentation>Specifies the CustomField definitions and strongly typed values that can be associated with any top level CDM </xs:documentation>
+	</xs:annotation>
+	<!-- Element definitions -->
+	<xs:element name="CustomField" type="CustomField"/>
+	<xs:element name="CustomFieldDefinition" type="CustomFieldDefinition"/>
+	<xs:element name="CustomFieldDefinitions" type="CustomFieldDefinitions"/>
+	<!-- Type definitions -->
+	<xs:complexType name="CustomFieldDefinition" abstract="true">
+		<xs:annotation>
+			<xs:documentation>Specifies the CustomFieldDefinition that can be defined to a CDM to add additional columns dynamically on a existing CDM entities, this object is not extended from CdmBase as it is considered as definition that can be manipulated by specifying the definition ID </xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Id" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">Specifies the "DefinitionId" of the CustomFieldDefinition object, Id element will be used if update is needed for the CustomFieldDefinition </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="CdmType" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">Specifies the CDM name to which the CustomFieldDefinition is to be associated, for eaxmple CdmType is could be "Person", "Customer", "Organization" in case of CMO </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Name" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">Specifies the "Name" of the CustomFieldDefinition object </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Hidden" type="xs:boolean" default="false" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">Specifies the value has to be shown to the client UI </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Required" type="xs:boolean" default="false" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">Specifies if the field is required to be specified for every instance of the "Parent" to which the definition is defined </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CustomFieldDefinitions">
+		<xs:sequence>
+			<xs:element name="CustomFieldDefinition" type="CustomFieldDefinition" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CustomField" abstract="true">
+		<xs:annotation>
+			<xs:documentation>Specifies the custom field type that can be added to an entity, this object is not extended from CdmBase as CustomField can not be manipulated as indepdent object and will always be considered in association with another top level CDM object </xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="DefinitionId" type="xs:string">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">Specifies the Unique Identifier of the CustomFieldDefinition, DefinitionId should be specified for every CustomField</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="StringTypeCustomFieldDefinition">
+		<xs:annotation>
+			<xs:documentation>Specifies the strongly typed version of StringTypeCustomFieldDefinition </xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="CustomFieldDefinition">
+				<xs:sequence>
+					<xs:element name="DefaultString" type="xs:string" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation xml:lang="en">Specifies the default string that will be substituted for the StringTypeCustomField </xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="RegularExpression" type="xs:string" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation xml:lang="en">Specifies the RegularExpression in the form of string that can be used to verify the validity of the StringTypeCustomField </xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="MaxLength" type="xs:int" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation xml:lang="en">Specifies the Max length that will be allowed for the string when creating/updating StringTypeCustomField </xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="NumberTypeCustomFieldDefinition">
+		<xs:annotation>
+			<xs:documentation>Specifies the strongly typed version of Number type custom field definition </xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="CustomFieldDefinition">
+				<xs:sequence>
+					<xs:element name="DefaultValue" type="xs:decimal" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation xml:lang="en">Specifies the default value of the decimal that will be substituted for the NumberTypeCustomField </xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="MinValue" type="xs:decimal" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation xml:lang="en">Specifies the minimum value of the decimal value which will be validated when NumberTypeCustomField is created/updated </xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="MaxValue" type="xs:decimal" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation xml:lang="en">Specifies the maximum value of decimal value which will be validated when NumberTypeCustomField is created/updated </xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="DateTypeCustomFieldDefinition">
+		<xs:annotation>
+			<xs:documentation>Specifies the strongly typed DateTypeCustomFieldDefintion </xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="CustomFieldDefinition">
+				<xs:sequence>
+					<xs:element name="DefaultDate" type="xs:time" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation xml:lang="en">Specifies the default date value for the DateTypeCustomField </xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="MinDate" type="xs:time" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation xml:lang="en">Specifies the minimum value for the date allowed for the DateTypeCustomField </xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="MaxDate" type="xs:time" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation xml:lang="en">Specifies the maximum value of date allowed for the DateTypeCustomField </xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="BooleanTypeCustomFieldDefinition">
+		<xs:annotation>
+			<xs:documentation>Specifies the strongly typed BooleanTypeCustomFieldDefinition </xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="CustomFieldDefinition">
+				<xs:sequence>
+					<xs:element name="DefaultValue" type="xs:boolean" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation xml:lang="en">Specifies the Default Value of the boolean field definition </xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="StringTypeCustomField">
+		<xs:annotation>
+			<xs:documentation>If StringTypeCustomFieldDefinition is defined, the StringTypeCustomField specifies the strongly typed field value </xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="CustomField">
+				<xs:sequence>
+					<xs:element name="Value" type="xs:string" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation xml:lang="en">Specifies the Value of the String field as strongly typed data </xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="NumberTypeCustomField">
+		<xs:annotation>
+			<xs:documentation>If NumberTypeCustomFieldDefinition is defined, the NumberTypeCustomField specifies the strongly typed field value </xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="CustomField">
+				<xs:sequence>
+					<xs:element name="Value" type="xs:decimal" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation xml:lang="en">Specifies the strongly typed Value for NumberTypeCustomField </xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="DateTypeCustomField">
+		<xs:annotation>
+			<xs:documentation>If StringTypeCustomFieldDefinition is defined, the StringTypeCustomField specifies the strongly typed field value </xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="CustomField">
+				<xs:sequence>
+					<xs:element name="Value" type="xs:time" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation xml:lang="en">Specifies the strongly typed Value for DateTypeCustomField </xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="BooleanTypeCustomField">
+		<xs:annotation>
+			<xs:documentation>If BooleanTypeCustomFieldDefinition is defined, the BooleanTypeCustomField specifies the strongly typed field value </xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="CustomField">
+				<xs:sequence>
+					<xs:element name="Value" type="xs:boolean" default="false" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation xml:lang="en">Specifies the strongly typed Value for BooleanTypeCustomField </xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+</xs:schema>

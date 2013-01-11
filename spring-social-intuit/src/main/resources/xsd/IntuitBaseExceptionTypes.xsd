@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns="http://www.intuit.com/sb/cdm/baseexceptionmodel/xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.intuit.com/sb/cdm/baseexceptionmodel/xsd" xmlns:tns="http://www.intuit.com/sb/cdm/baseexceptionmodel/xsd"  elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<!-- Exception Hierarchy-->
+	<xs:complexType name="FaultInfo">
+		<xs:annotation>
+			<xs:documentation>FaultInfo represents an exception condition</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Message" type="xs:string"/>
+			<xs:element name="ErrorCode" type="xs:string" minOccurs="0"/>
+			<xs:element name="Cause" type="xs:string" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="ErrorCodeEnum">
+		<xs:annotation>
+			<xs:documentation>Error code enum</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Internal Server Error"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CauseEnum">
+		<xs:annotation>
+			<xs:documentation>Cause enum</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Client"/>
+			<xs:enumeration value="Server"/>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>
