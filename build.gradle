@@ -5,15 +5,22 @@ buildscript {
     }
     dependencies {
         classpath 'org.springframework.build.gradle:docbook-reference-plugin:0.2.2'
-	classpath 'no.entitas.gradle.jaxb:gradle-jaxb-plugin:2.0'   
+        classpath 'com.sun.xml.bind:jaxb-xjc:2.2.4-1'
    }
+}
+
+configurations {
+   xjc
+ }
+dependencies {
+		xjc group: 'com.sun.xml.bind', name: 'jaxb-xjc', version: '2.2.4-1'
 }
 
 configure(allprojects) {
     apply plugin: 'java'
     apply plugin: 'eclipse'
     apply plugin: 'idea'
-    apply plugin: 'jaxb'
+ //   apply plugin: 'jaxb'
 
     group = 'org.springframework.social'
 
@@ -21,25 +28,24 @@ configure(allprojects) {
     targetCompatibility=1.5
 
     ext {
-	springSocialVersion = '1.0.2.RELEASE'
-	jacksonVersion = '1.9.9'
-	junitVersion = '4.10'
-	mockitoVersion = '1.9.5'
-	springVersion = '3.1.3.RELEASE'
-	springTestMvcVersion = '1.0.0.BUILD-SNAPSHOT'
- 	springSecurityCryptoVersion = '3.1.3.RELEASE'
-	springWSVersion = '2.0.3.RELEASE'
-	hamcrestVersion = '1.3'
+		springSocialVersion = '1.1.0.M2'
+		jacksonVersion = '1.9.9'
+		junitVersion = '4.11'
+		mockitoVersion = '1.9.5'
+		springVersion = '3.2.1.RELEASE'
+		springTestMvcVersion = '1.0.0.BUILD-SNAPSHOT'
+	 	springSecurityCryptoVersion = '3.1.3.RELEASE'
+		springWSVersion = '2.0.3.RELEASE'
+		hamcrestVersion = '1.3'
+		commonsVersion = '1.4'
+		xmlunitVersion = '1.4'
     }
 
     [compileJava, compileTestJava]*.options*.compilerArgs = ['-Xlint:none']
 
     sourceSets.test.resources.srcDirs = ['src/test/resources', 'src/test/java']
-    sourceSets.main.resources.srcDirs = ['src/main/resources', 'src/main/java', '$buildDir/generated-src/jaxb/main']
-    sourceSets.main.jaxb {
-            srcDir 'src/main/resources/xsd'
-            include 'qbo.xsd'
-    }
+    sourceSets.main.resources.srcDirs = ['src/main/resources', 'src/main/java', 'src/xjc/java', 'src/xjc/java']
+    
 
     test.systemProperty("java.awt.headless", "true")
 
@@ -51,12 +57,13 @@ configure(allprojects) {
     }
 
     dependencies {
-	jaxb 'com.sun.xml.bind:jaxb-xjc:2.2.4-1'
         testCompile ("org.hamcrest:hamcrest-library:$hamcrestVersion")
         testCompile ("junit:junit-dep:$junitVersion")
         testCompile ("org.mockito:mockito-core:$mockitoVersion")
         testCompile ("org.springframework:spring-test:$springVersion")
-        testCompile ("org.springframework:spring-test-mvc:$springTestMvcVersion")
+        testCompile ("commons-io:commons-io:$commonsVersion")
+        testCompile ("xmlunit:xmlunit:$xmlunitVersion")
+        
     }
 
     // servlet-api (2.5) and tomcat-servlet-api (3.0) classpath entries should not be
@@ -69,7 +76,7 @@ configure(allprojects) {
 
 configure(subprojects) { subproject ->
     apply from: "${rootProject.projectDir}/publish-maven.gradle"
-
+	
     jar {
         manifest.attributes['Implementation-Title'] = subproject.name
         manifest.attributes['Implementation-Version'] = subproject.version
@@ -81,12 +88,11 @@ configure(subprojects) { subproject ->
             expand(copyright: new Date().format('yyyy'), version: project.version)
         }
     }
-
+   
     javadoc {
         options.memberLevel = org.gradle.external.javadoc.JavadocMemberLevel.PROTECTED
         options.author = true
         options.header = project.name
-        //options.overview = "${projectDir}/src/main/java/overview.html"
     }
 
     task sourcesJar(type: Jar, dependsOn:classes) {
@@ -132,8 +138,21 @@ configure(rootProject) {
 
     dependencies { // for integration tests
     }
-    
-    task api(type: Javadoc, dependsOn:[generateSchemaSource]) {
+
+	//Not Sure the best way to add generate source to the compile path so write to src/main/java
+	task xjc () {
+		xjc.generateSrc = file('spring-social-intuit/src/main/java')
+		xjc.generateSrc.mkdirs()
+		ant.taskdef(name: 'xjc', classname: 'com.sun.tools.xjc.XJCTask', classpath: configurations.xjc.asPath)
+		ant.xjc(
+			destdir: xjc.generateSrc.path,
+			schema:	 'spring-social-intuit/src/main/resources/xsd/qbo.xsd',
+			binding: 'spring-social-intuit/src/main/resources/xsd/GlobalBindings.xjb',
+			extension: true
+		)		 	
+	}
+	
+    task api(type: Javadoc) {
         group = 'Documentation'
         description = 'Generates aggregated Javadoc API documentation.'
         title = "${rootProject.description} ${version} API"
@@ -264,3 +283,4 @@ task updateRootDocs << {
 }
 
 build.dependsOn('updateRootDocs')
+//compileJava.dependsOn('xjc')

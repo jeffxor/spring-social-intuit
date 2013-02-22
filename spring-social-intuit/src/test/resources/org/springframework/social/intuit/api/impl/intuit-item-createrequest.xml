@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Item xmlns:ns2="http://www.intuit.com/sb/cdm/qbo" xmlns="http://www.intuit.com/sb/cdm/v2">
+	<Name>Pencils</Name>
+	<Desc>Pencils HB</Desc>
+	<Taxable>true</Taxable>
+	<UnitPrice>
+		<Amount>2</Amount>
+	</UnitPrice>
+	<IncomeAccountRef>
+		<AccountId>30</AccountId>
+	</IncomeAccountRef>
+	<PurchaseDesc>500 pencils purchased</PurchaseDesc>
+	<PurchaseCost>
+		<Amount>1</Amount>
+	</PurchaseCost>
+	<ExpenseAccountRef>
+		<AccountId>30</AccountId>
+	</ExpenseAccountRef>
+</Item>

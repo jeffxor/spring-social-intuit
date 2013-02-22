@@ -5,3 +5,4 @@ target/
 .classpath
 .gradle
 pom.xml
+bin/

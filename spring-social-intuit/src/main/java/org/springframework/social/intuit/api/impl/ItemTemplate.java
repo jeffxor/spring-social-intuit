@@ -34,7 +34,7 @@ public class ItemTemplate implements ItemOperations {
 		requireAuthorization();		
 		SearchResults response = restTemplate.postForObject("{baseURL}/resource/items/v2/{companyId}", null, SearchResults.class, baseUrl, companyId);
 		if(response != null){
-			return ((Items)response.getCdmCollections()).getItem();
+			return ((Items)response.getCdmCollections()).getItems();
 		}
 		return null;
 	}

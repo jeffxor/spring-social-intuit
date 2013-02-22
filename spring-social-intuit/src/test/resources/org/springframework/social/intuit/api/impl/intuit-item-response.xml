@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Item xmlns="http://www.intuit.com/sb/cdm/v2" xmlns:ns2="http://www.intuit.com/sb/cdm/qbopayroll/v1"
+	xmlns:ns3="http://www.intuit.com/sb/cdm/qbo">
+	<Id>7</Id>
+	<SyncToken>0</SyncToken>
+	<MetaData>
+		<CreateTime>2010-09-13T04:11:06-07:00</CreateTime>
+		<LastUpdatedTime>2010-09-13T04:11:06-07:00</LastUpdatedTime>
+	</MetaData>
+	<Name>Pencils</Name>
+	<Desc>Pencils HB</Desc>
+	<Taxable>true</Taxable>
+	<UnitPrice>
+		<Amount>2</Amount>
+	</UnitPrice>
+	<IncomeAccountRef>
+		<AccountId>30</AccountId>
+	</IncomeAccountRef>
+	<PurchaseDesc>500 pencils purchased</PurchaseDesc>
+	<PurchaseCost>
+		<Amount>1</Amount>
+	</PurchaseCost>
+	<ExpenseAccountRef>
+		<AccountId>30</AccountId>
+	</ExpenseAccountRef>
+</Item>

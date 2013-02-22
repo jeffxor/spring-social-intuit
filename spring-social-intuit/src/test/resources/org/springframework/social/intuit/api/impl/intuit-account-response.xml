@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Account xmlns="http://www.intuit.com/sb/cdm/v2" xmlns:ns2="http://www.intuit.com/sb/cdm/qbopayroll/v1"
+	xmlns:ns3="http://www.intuit.com/sb/cdm/qbo">
+	<Id>44</Id>
+	<SyncToken>0</SyncToken>
+	<MetaData>
+		<CreateTime>2010-09-13T01:18:14-07:00</CreateTime>
+		<LastUpdatedTime>2010-09-13T01:18:14-07:00</LastUpdatedTime>
+	</MetaData>
+	<Name>Loan Account</Name>
+	<Desc>Loan Account</Desc>
+	<Subtype>Savings</Subtype>
+	<AcctNum>5001</AcctNum>
+	<CurrentBalance>0.00</CurrentBalance>
+</Account>

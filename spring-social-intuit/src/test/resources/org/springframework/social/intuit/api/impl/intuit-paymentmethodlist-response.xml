@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<ns2:SearchResults xmlns="http://www.intuit.com/sb/cdm/v2"
+	xmlns:ns2="http://www.intuit.com/sb/cdm/qbo" xmlns:ns3="http://www.intuit.com/sb/cdm/qbopayroll/v1">
+	<ns2:CdmCollections xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:type="PaymentMethods">
+		<PaymentMethod>
+			<Id>8</Id>
+			<SyncToken>0</SyncToken>
+			<Name>Write Transfer Amount</Name>
+			<Type>NON_CREDIT_CARD</Type>
+		</PaymentMethod>
+	</ns2:CdmCollections>
+	<ns2:Count>1</ns2:Count>
+	<ns2:CurrentPage>1</ns2:CurrentPage>
+</ns2:SearchResults>

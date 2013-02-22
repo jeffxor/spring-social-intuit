@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<SearchResults xmlns="http://www.intuit.com/sb/cdm/qbo"
+	xmlns:ns2="http://www.intuit.com/sb/cdm/v2" xmlns:ns3="http://www.intuit.com/sb/cdm/qbopayroll/v1">
+	<CdmCollections xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:type="ns2:Customers">
+		<ns2:Customer>
+			<ns2:Id>17</ns2:Id>
+			<ns2:SyncToken>0</ns2:SyncToken>
+			<ns2:MetaData>
+				<ns2:CreateTime>2010-09-13T02:09:18-07:00</ns2:CreateTime>
+				<ns2:LastUpdatedTime>2010-09-13T02:11:38-07:00</ns2:LastUpdatedTime>
+			</ns2:MetaData>
+			<ns2:Name>John Doe</ns2:Name>
+			<ns2:Address>
+				<ns2:Line1>Park Avenue</ns2:Line1>
+				<ns2:Line2></ns2:Line2>
+				<ns2:City>Woodland Hills</ns2:City>
+				<ns2:CountrySubDivisionCode>CA</ns2:CountrySubDivisionCode>
+				<ns2:PostalCode>91667</ns2:PostalCode>
+			</ns2:Address>
+			<ns2:Phone>
+				<ns2:DeviceType>Mobile</ns2:DeviceType>
+				<ns2:FreeFormNumber>(770) 349-4200</ns2:FreeFormNumber>
+			</ns2:Phone>
+			<ns2:WebSite>
+				<ns2:URI>http://www.digitalinsight.mint.com/</ns2:URI>
+			</ns2:WebSite>
+			<ns2:Email>
+				<ns2:Address>john_doe@digitalinsight.mint.com</ns2:Address>
+			</ns2:Email>
+			<ns2:GivenName>John</ns2:GivenName>
+			<ns2:MiddleName>J</ns2:MiddleName>
+			<ns2:FamilyName>Doe</ns2:FamilyName>
+			<ns2:DBAName>Mint</ns2:DBAName>
+			<ns2:SalesTermId>5</ns2:SalesTermId>
+		</ns2:Customer>
+	</CdmCollections>
+	<Count>1</Count>
+	<CurrentPage>1</CurrentPage>
+</SearchResults>

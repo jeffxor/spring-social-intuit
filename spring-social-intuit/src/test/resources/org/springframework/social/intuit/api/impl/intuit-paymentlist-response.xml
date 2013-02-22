@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<SearchResults xmlns="http://www.intuit.com/sb/cdm/qbo"
+	xmlns:ns2="http://www.intuit.com/sb/cdm/v2" xmlns:ns3="http://www.intuit.com/sb/cdm/qbopayroll/v1">
+	<CdmCollections xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:type="ns2:Payments">
+		<ns2:Payment>
+			<ns2:Id>47</ns2:Id>
+			<ns2:SyncToken>1</ns2:SyncToken>
+			<ns2:MetaData>
+				<ns2:CreateTime>2010-09-14T05:33:24-07:00</ns2:CreateTime>
+				<ns2:LastUpdatedTime>2010-09-14T05:42:00-07:00</ns2:LastUpdatedTime>
+			</ns2:MetaData>
+			<ns2:Header>
+				<ns2:DocNumber>54</ns2:DocNumber>
+				<ns2:TxnDate>2010-08-09</ns2:TxnDate>
+				<ns2:Note>Payment against Invoice</ns2:Note>
+				<ns2:CustomerId>5</ns2:CustomerId>
+				<ns2:DepositToAccountId>41</ns2:DepositToAccountId>
+				<ns2:PaymentMethodId>1</ns2:PaymentMethodId>
+				<ns2:TotalAmt>50.00</ns2:TotalAmt>
+				<ns2:ProcessPayment>false</ns2:ProcessPayment>
+			</ns2:Header>
+			<ns2:Line>
+				<ns2:Amount>50.00</ns2:Amount>
+				<ns2:TxnId>8</ns2:TxnId>
+			</ns2:Line>
+		</ns2:Payment>
+	</CdmCollections>
+	<Count>1</Count>
+	<CurrentPage>1</CurrentPage>
+</SearchResults>

@@ -8,10 +8,10 @@ import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 
+import com.intuit.sb.cdm.qbo.SearchResults;
 import com.intuit.sb.cdm.v2.Customer;
 import com.intuit.sb.cdm.v2.Payment;
 import com.intuit.sb.cdm.v2.Payments;
-import com.intuit.sb.cdm.qbo.SearchResults;
 
 public class PaymentTemplate implements PaymentOperations {
 	
@@ -36,7 +36,7 @@ public class PaymentTemplate implements PaymentOperations {
 		requireAuthorization();		
 		SearchResults response = restTemplate.postForObject("{baseURL}/resource/payments/v2/{companyId}", null, SearchResults.class, baseUrl, companyId);
 		if(response != null){
-			return ((Payments)response.getCdmCollections()).getPayment();
+			return ((Payments)response.getCdmCollections()).getPayments();
 		}
 		return null;
 	}
@@ -48,7 +48,7 @@ public class PaymentTemplate implements PaymentOperations {
 		criteria.add("Sort", "TxnDate NewestToOldest");
 		SearchResults response = restTemplate.postForObject("{baseURL}/resource/payments/v2/{companyId}", criteria, SearchResults.class, baseUrl, companyId);
 		if(response != null){
-			return ((Payments)response.getCdmCollections()).getPayment();
+			return ((Payments)response.getCdmCollections()).getPayments();
 		}
 		return null;
 	}
@@ -74,10 +74,17 @@ public class PaymentTemplate implements PaymentOperations {
 	}
 	public boolean delete(Payment payment) {
 		requireAuthorization();
-		Payment response = restTemplate.postForObject("{baseURL}/resource/payment/v2/{companyId}/{paymentId}?methodx=delete", payment, Payment.class, baseUrl, companyId, payment.getId().getValue());
+		Payment response = restTemplate.postForObject("{baseURL}/resource/payment/v2/{companyId}/{paymentId}?methodx=delete", buildDelete(payment), Payment.class, baseUrl, companyId, payment.getId().getValue());
 		return (response.getId() == null);
 	}
 
+	private Payment buildDelete(Payment item){
+		Payment delete = new Payment();
+		delete.setSyncToken(item.getSyncToken());
+		delete.setId(item.getId());
+		
+		return delete;
+	}
 	protected void requireAuthorization() {
 		if (!isAuthorized) {
 			throw new MissingAuthorizationException();

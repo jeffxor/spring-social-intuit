@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.intuit.com/sb/cdm/v2" targetNamespace="http://www.intuit.com/sb/cdm/v2" elementFormDefault="qualified" attributeFormDefault="unqualified">
-	<xs:include schemaLocation="PartyCdmTypes.xsd"/>
+<xs:schema xmlns="http://www.intuit.com/sb/cdm/v2" targetNamespace="http://www.intuit.com/sb/cdm/v2" xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+ 	<xs:include schemaLocation="PartyCdmTypes.xsd"/>
 	<xs:include schemaLocation="Groups.xsd"/>
 	<xs:include schemaLocation="IntuitCdmBaseTypes.xsd"/>
 	<xs:include schemaLocation="IntuitCustomFieldCdmTypes.xsd"/>
@@ -12,7 +12,7 @@
 	<xs:element name="Organizations" type="Organizations"/>
 	<xs:element name="Party" type="Party"/>
 	<xs:element name="Parties" type="Parties"/>
-	<!-- Role element definition -->
+	<!-- Role element definition -->	
 	<xs:element name="Vendor" type="Vendor"/>
 	<xs:element name="Employee" type="Employee"/>
 	<xs:element name="Customer" type="Customer"/>

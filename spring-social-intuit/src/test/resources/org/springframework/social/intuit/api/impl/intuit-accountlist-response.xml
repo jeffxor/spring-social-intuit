@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<SearchResults xmlns="http://www.intuit.com/sb/cdm/qbo"
+	xmlns:ns2="http://www.intuit.com/sb/cdm/v2" xmlns:ns3="http://www.intuit.com/sb/cdm/qbopayroll/v1">
+	<CdmCollections xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:type="ns2:Accounts">
+		<ns2:Account>
+			<ns2:Id>44</ns2:Id>
+			<ns2:SyncToken>1</ns2:SyncToken>
+			<ns2:MetaData>
+				<ns2:CreateTime>2010-09-13T01:18:14-07:00</ns2:CreateTime>
+				<ns2:LastUpdatedTime>2010-09-13T01:20:45-07:00</ns2:LastUpdatedTime>
+			</ns2:MetaData>
+			<ns2:Name>Loan Account</ns2:Name>
+			<ns2:Desc>Loan account</ns2:Desc>
+			<ns2:Subtype>Savings</ns2:Subtype>
+			<ns2:AcctNum>5001</ns2:AcctNum>
+			<ns2:CurrentBalance>0.00</ns2:CurrentBalance>
+		</ns2:Account>
+	</CdmCollections>
+	<Count>1</Count>
+	<CurrentPage>1</CurrentPage>
+</SearchResults>

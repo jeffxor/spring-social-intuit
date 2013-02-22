@@ -34,7 +34,7 @@ public class CustomerTemplate implements CustomerOperations {
 		requireAuthorization();		
 		SearchResults response = restTemplate.postForObject("{baseURL}/resource/customers/v2/{companyId}", null, SearchResults.class, baseUrl, companyId);
 		if(response != null){
-			return ((Customers)response.getCdmCollections()).getCustomer();
+			return ((Customers)response.getCdmCollections()).getCustomers();
 		}
 		return null;
 	}

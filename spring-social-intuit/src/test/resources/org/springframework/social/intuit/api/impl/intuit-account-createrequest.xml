@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Account xmlns:ns2="http://www.intuit.com/sb/cdm/qbo" xmlns="http://www.intuit.com/sb/cdm/v2">
+	<Name>Loan Account </Name>
+	<Desc>Loan Account</Desc>
+	<Subtype>Savings</Subtype>
+	<AcctNum>5001</AcctNum>
+	<OpeningBalanceDate>2010-05-14</OpeningBalanceDate>
+</Account>

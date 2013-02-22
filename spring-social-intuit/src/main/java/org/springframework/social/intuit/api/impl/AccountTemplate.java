@@ -64,7 +64,7 @@ public class AccountTemplate implements AccountOperations {
 			criteria.add("PageNum", pageNum.toString());
 			SearchResults response = restTemplate.postForObject("{baseURL}/resource/accounts/v2/{companyId}", criteria, SearchResults.class, baseUrl, companyId);
 			if(response == null) break;
-			List<Account> returnedAccounts = ((Accounts)response.getCdmCollections()).getAccount();
+			List<Account> returnedAccounts = ((Accounts)response.getCdmCollections()).getAccounts();
 			if(pageSize != returnedAccounts.size()) hasMore = false;
 			accounts.addAll(returnedAccounts);
 			pageNum = response.getCurrentPage() + 1;

@@ -2492,7 +2492,8 @@ For American Express, it is a 4 digit number on the front.</xs:documentation>
 	</xs:complexType>
 	<xs:complexType name="Job">
 		<xs:complexContent>
-			<xs:extension base="Customer">
+			<!-- xjc hack @XMLRootElement for customer not generate because Job extends Customer changed to Employee -->
+			<xs:extension base="Employee">
 				<xs:sequence>
 					<xs:group ref="CustomerReferenceGroup" minOccurs="0">
 						<xs:annotation>

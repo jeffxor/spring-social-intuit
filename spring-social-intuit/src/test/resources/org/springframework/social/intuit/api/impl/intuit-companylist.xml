@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<RestResponse xmlns="http://www.intuit.com/sb/cdm/v2">
+   <CompaniesMetaData>
+      <CompanyMetaData>
+         <ExternalRealmId>132477010</ExternalRealmId>
+         <QBNRegisteredCompanyName>Digital Assets</QBNRegisteredCompanyName>
+         <CompanySignUpDateTime>2010-05-21T23:54:45Z</CompanySignUpDateTime>
+         <SampleFile>false</SampleFile>
+         <QBNCompanyUserAdminIdNumber>132375248</QBNCompanyUserAdminIdNumber>
+         <QBNCompanyUserAdminEmail>johndoe.intuit.com</QBNCompanyUserAdminEmail>
+         <SyncEnabled>false</SyncEnabled>
+      </CompanyMetaData>
+      <CompanyMetaData>
+         <ExternalRealmId>133203611</ExternalRealmId>
+         <QBNRegisteredCompanyName>Mint</QBNRegisteredCompanyName>
+         <CompanySignUpDateTime>2010-09-22T17:25:24Z</CompanySignUpDateTime>
+         <SampleFile>false</SampleFile>
+         <QBNCompanyUserAdminIdNumber>132375248</QBNCompanyUserAdminIdNumber>
+         <QBNCompanyUserAdminEmail>johnsmith.intuit.com</QBNCompanyUserAdminEmail>
+         <SyncEnabled>false</SyncEnabled>
+      </CompanyMetaData>
+   </CompaniesMetaData>
+</RestResponse>

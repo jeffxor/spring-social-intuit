@@ -33,7 +33,7 @@ public class PaymentMethodTemplate implements PaymentMethodOperations {
 		requireAuthorization();		
 		SearchResults response = restTemplate.postForObject("{baseURL}/resource/payment-methods/v2/{companyId}", null, SearchResults.class, baseUrl, companyId);
 		if(response != null){
-			return ((PaymentMethods)response.getCdmCollections()).getPaymentMethod();
+			return ((PaymentMethods)response.getCdmCollections()).getPaymentMethods();
 		}
 		return null;
 	}

@@ -36,7 +36,7 @@ public class InvoiceTemplate implements InvoiceOperations {
 		requireAuthorization();		
 		SearchResults response = restTemplate.postForObject("{baseURL}/resource/invoices/v2/{companyId}", null, SearchResults.class, baseUrl, companyId);
 		if(response != null){
-			return ((Invoices)response.getCdmCollections()).getInvoice();
+			return ((Invoices)response.getCdmCollections()).getInvoices();
 		}
 		return null;
 	}
@@ -47,7 +47,7 @@ public class InvoiceTemplate implements InvoiceOperations {
 		criteria.add("Filter", "CustomerId :EQUALS: " + customer.getId().getValue());
 		SearchResults response = restTemplate.postForObject("{baseURL}/resource/invoices/v2/{companyId}", criteria, SearchResults.class, baseUrl, companyId);
 		if(response != null){
-			return ((Invoices)response.getCdmCollections()).getInvoice();
+			return ((Invoices)response.getCdmCollections()).getInvoices();
 		}
 		return null;
 	}

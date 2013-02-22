@@ -1,0 +1,7 @@
+<PaymentMethod xmlns="http://www.intuit.com/sb/cdm/v2"
+	xmlns:ns2="http://www.intuit.com/sb/cdm/qbopayroll/v1" xmlns:ns3="http://www.intuit.com/sb/cdm/qbo">
+	<Id>8</Id>
+	<SyncToken>0</SyncToken>
+	<Name>Wire Transfer</Name>
+	<Type>NON_CREDIT_CARD</Type>
+</PaymentMethod>

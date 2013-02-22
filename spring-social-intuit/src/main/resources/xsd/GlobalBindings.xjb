@@ -3,16 +3,8 @@
    xmlns:jxb="http://java.sun.com/xml/ns/jaxb"
    xmlns:xs="http://www.w3.org/2001/XMLSchema">
 
-		<jxb:globalBindings >
+		<jxb:globalBindings>
 		     <jxb:serializable uid="1" />
-			 <xjc:javaType name="java.util.Date"
-                               xmlType="xs:dateTime"
-                               adapter="com.intuit.sb.cdm.util.DateTimeAdapter"/>
-			 <xjc:javaType name="java.util.Date"
-                               xmlType="xs:date"
-                               adapter="com.intuit.sb.cdm.util.DateAdapter"/>
-             <xjc:javaType name="java.util.Date"
-                               xmlType="xs:time"
-                               adapter="com.intuit.sb.cdm.util.TimestampAdapter"/>
+		     <xjc:simple/>
 		</jxb:globalBindings >
 </jxb:bindings>

@@ -5,7 +5,7 @@ import java.util.List;
 import org.simpleframework.xml.ElementList;
 import org.simpleframework.xml.Root;
 
-@Root
+@Root(name="RestResponse",strict=false)
 public class RestResponse {
 	
 	@ElementList(name="CompaniesMetaData")
@@ -18,7 +18,5 @@ public class RestResponse {
 	public void setCompaniesMetaData(List<CompanyMetaData> companiesMetaData) {
 		this.companiesMetaData = companiesMetaData;
 	}
-	
-	
-	
+		
 }
