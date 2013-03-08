@@ -25,9 +25,10 @@ public class IntuitAdapter implements ApiAdapter<Intuit> {
 
 	public void setConnectionValues(Intuit intuit, ConnectionValues values) {
 		IntuitProfile profile = intuit.userOperations().getUserProfile();
-		values.setProviderUserId(profile.getAgentId());
+		values.setProviderUserId(profile.getName());
 		values.setDisplayName(profile.getName());
-		values.setProfileUrl(profile.getBaseUrl());
+		values.setProfileUrl(profile.getEmailAddress());
+		
 	}
 
 	public UserProfile fetchUserProfile(Intuit intuit) {

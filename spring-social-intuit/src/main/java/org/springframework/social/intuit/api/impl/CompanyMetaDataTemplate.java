@@ -29,7 +29,7 @@ public class CompanyMetaDataTemplate implements CompanyMetaDataOperations {
 		String response = restTemplate.getForObject(url, String.class);
 		RestResponse restResponse = CompanyMetaDataTemplate.serializeForObject(RestResponse.class, response);
 		if(restResponse != null){
-			return restResponse.getCompaniesMetaData().get(0);
+			return restResponse.getCompaniesMetaData().get(1);
 		}
 		return null;
 	}

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns="http://platform.intuit.com/api/v1" targetNamespace="http://platform.intuit.com/api/v1" xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+  <xs:element name="UserResponse">
+    <xs:complexType>
+      <xs:sequence>
+		<xs:element name="ErrorCode" type="xs:integer" minOccurs="0"/>
+		<xs:element name="ServerTime" type="xs:date" minOccurs="0"/>
+        <xs:element name="User" type="User" minOccurs="0"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+    <xs:complexType name="User">
+      <xs:sequence>
+		  <xs:element name="FirstName" type="xs:string"/>
+		  <xs:element name="LastName" type="xs:string"/>
+		  <xs:element name="EmailAddress" type="xs:string"/>
+		  <xs:element name="ScreenName" type="xs:string"/>		  
+		  <xs:element name="IsVerified" type="xs:boolean"/>
+      </xs:sequence>
+    </xs:complexType>
+</xs:schema>

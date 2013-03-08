@@ -5,46 +5,40 @@ import org.springframework.social.intuit.api.IntuitProfile;
 import org.springframework.social.intuit.api.UserOperations;
 import org.springframework.web.client.RestTemplate;
 
-import com.intuit.sb.cdm.qbo.QboUser;
+import com.intuit.platform.api.v1.UserResponse;
 
 public class UserTemplate implements UserOperations {
 	
 	private final boolean isAuthorized;
 	private final RestTemplate restTemplate;
-	private final String companyId;
 
-	public UserTemplate(boolean isAuthorized, RestTemplate restTemplate, String companyId) {
+	public UserTemplate(boolean isAuthorized, RestTemplate restTemplate) {
 		super();
 		this.isAuthorized = isAuthorized;
 		this.restTemplate = restTemplate;
-		this.companyId = companyId;
 	}
 
 	public IntuitProfile getUserProfile() {
-		QboUser response = restTemplate.getForObject("https://qbo.intuit.com/qbo1/rest/user/v2/{companyId}", QboUser.class, companyId);		
-		return new IntuitProfile(response);
+		UserResponse userResponse = restTemplate.getForObject("https://appcenter.intuit.com/api/v1/user/current", UserResponse.class);
+		return new IntuitProfile(userResponse.getUser());
 	}
 
 	public String getName() {
 		return getUserProfile().getName();
 	}
-
-	public String getTicket() {
-		return getUserProfile().getTicket();
-	}
-
-	public String getAgentId() {
-		return getUserProfile().getAgentId();
-	}
-
-	public String getCompanyId() {
-		return getUserProfile().getCompanyId();
-	}
-
-	public String getBaseUrl() {
-		return "https://qbo.sbfinance.intuit.com";	
-	}
 	
+	public String getFirstName() {
+		return getUserProfile().getFirstName();
+	}
+
+	public String getLastName() {
+		return getUserProfile().getLastName();
+	}
+
+	public String getEmailAddress() {
+		return getUserProfile().getEmailAddress();
+	}
+
 	protected void requireAuthorization() {
 		if (!isAuthorized) {
 			throw new MissingAuthorizationException();

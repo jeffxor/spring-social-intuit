@@ -7,13 +7,11 @@ package org.springframework.social.intuit.api;
  * @author Jeffrey Williams
  */
 public interface UserOperations {
-
 	
 	String getName();
-	String getTicket();
-	String getAgentId();
-	String getCompanyId();
-	String getBaseUrl();
+	String getFirstName();
+	String getLastName();
+	String getEmailAddress();
 
 	IntuitProfile getUserProfile();
 

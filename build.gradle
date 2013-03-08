@@ -20,7 +20,7 @@ configure(allprojects) {
     apply plugin: 'java'
     apply plugin: 'eclipse'
     apply plugin: 'idea'
- //   apply plugin: 'jaxb'
+    apply plugin: 'maven'
 
     group = 'org.springframework.social'
 
@@ -142,11 +142,21 @@ configure(rootProject) {
 	//Not Sure the best way to add generate source to the compile path so write to src/main/java
 	task xjc () {
 		xjc.generateSrc = file('spring-social-intuit/src/main/java')
-		xjc.generateSrc.mkdirs()
 		ant.taskdef(name: 'xjc', classname: 'com.sun.tools.xjc.XJCTask', classpath: configurations.xjc.asPath)
 		ant.xjc(
 			destdir: xjc.generateSrc.path,
 			schema:	 'spring-social-intuit/src/main/resources/xsd/qbo.xsd',
+			binding: 'spring-social-intuit/src/main/resources/xsd/GlobalBindings.xjb',
+			extension: true
+		)		 	
+	}
+
+	task xjcUserResponse () {
+		xjcUserResponse.generateSrc = file('spring-social-intuit/src/main/java')
+		ant.taskdef(name: 'xjc', classname: 'com.sun.tools.xjc.XJCTask', classpath: configurations.xjc.asPath)
+		ant.xjc(
+			destdir: xjcUserResponse.generateSrc.path,
+			schema:	 'spring-social-intuit/src/main/resources/xsd/UserResponse.xsd',
 			binding: 'spring-social-intuit/src/main/resources/xsd/GlobalBindings.xjb',
 			extension: true
 		)		 	
@@ -283,4 +293,3 @@ task updateRootDocs << {
 }
 
 build.dependsOn('updateRootDocs')
-//compileJava.dependsOn('xjc')

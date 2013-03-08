@@ -2,11 +2,7 @@ package org.springframework.social.intuit.api;
 
 import java.io.Serializable;
 
-import org.simpleframework.xml.Element;
-import org.simpleframework.xml.Root;
-
-import com.intuit.sb.cdm.qbo.QboUser;
-import com.intuit.sb.cdm.qbo.QboUserCompanyMapping;
+import com.intuit.platform.api.v1.User;
 
 
 /**
@@ -14,56 +10,38 @@ import com.intuit.sb.cdm.qbo.QboUserCompanyMapping;
  * 
  * @author Jeffrey Williams
  */
-@Root(strict=false)
+
 public class IntuitProfile implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	@Element(name="LoginName")
 	private String name;
-	@Element(name="Ticket")
-	private String ticket;
-	@Element(name="AgentId")
-	private String agentId;
-	@Element(name="CurrentCompany")
-	private QboUserCompanyMapping currentCompany;
+	private String firstName;
+	private String lastName;
+	private String emailAddress;
 	
 	public IntuitProfile() {
 	}
 
-	public IntuitProfile(QboUser qboUser) {
-		name = qboUser.getLoginName();
-		ticket = qboUser.getTicket();
-		agentId = qboUser.getAgentId();
-		currentCompany = qboUser.getCurrentCompany();
+	public IntuitProfile(User user) {
+		name = user.getScreenName();
+		firstName = user.getFirstName();
+		lastName = user.getLastName();
+		emailAddress = user.getEmailAddress();
 	}
 
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
-	
 	public String getName() {
 		return name;
 	}
-	
-	public String getTicket() {
-		return ticket;
+
+	public String getFirstName() {
+		return firstName;
 	}
-	
-	public String getAgentId() {
-		return agentId;
+
+	public String getLastName() {
+		return lastName;
 	}
-		
-	public String getCompanyId() {
-		return currentCompany.getCompanyId();
+
+	public String getEmailAddress() {
+		return emailAddress;
 	}
-	
-	public String getBaseUrl() {
-		return currentCompany.getBaseURI();
-	}
-	
-	public String getSubscriptionStatus() {
-//		return currentCompany.getSubscriptionStatus();
-		return null;
-	}
-	
 }

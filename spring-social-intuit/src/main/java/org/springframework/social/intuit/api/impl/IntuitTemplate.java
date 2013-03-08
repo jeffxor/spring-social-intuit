@@ -29,7 +29,7 @@ public class IntuitTemplate extends AbstractOAuth1ApiBinding implements Intuit {
 	private ItemOperations itemOperations;
 	
 	private String companyId;
-	private String baseUrl;
+	private static final String BASE_URL = "https://qbo.sbfinance.intuit.com";	 
 
 	public IntuitTemplate(String consumerKey, String consumerSecret, String accessToken, String accessTokenSecret) {
 		super(consumerKey, consumerSecret, accessToken, accessTokenSecret);		
@@ -48,14 +48,13 @@ public class IntuitTemplate extends AbstractOAuth1ApiBinding implements Intuit {
 		if(!isInitialized()){
 			companyMetaDataOperations = new CompanyMetaDataTemplate(isAuthorized(), getRestTemplate());
 			String companyId = companyMetaDataOperations.getCompanyMetaData().getCompanyId();
-			userOperations = new UserTemplate(isAuthorized(), getRestTemplate(), companyId);
-			String baseUrl = userOperations.getBaseUrl();
-			accountOperations = new AccountTemplate(isAuthorized(), getRestTemplate(), companyId, baseUrl);
-			customerOperations = new CustomerTemplate(isAuthorized(), getRestTemplate(), companyId, baseUrl);
-			paymentOperations = new PaymentTemplate(isAuthorized(), getRestTemplate(), companyId, baseUrl);
-			paymentMethodOperations = new PaymentMethodTemplate(isAuthorized(), getRestTemplate(), companyId, baseUrl);
-			invoiceOperations = new InvoiceTemplate(isAuthorized(), getRestTemplate(), companyId, baseUrl);
-			itemOperations = new ItemTemplate(isAuthorized(), getRestTemplate(), companyId, baseUrl);
+			userOperations = new UserTemplate(isAuthorized(), getRestTemplate());
+			accountOperations = new AccountTemplate(isAuthorized(), getRestTemplate(), companyId, BASE_URL);
+			customerOperations = new CustomerTemplate(isAuthorized(), getRestTemplate(), companyId, BASE_URL);
+			paymentOperations = new PaymentTemplate(isAuthorized(), getRestTemplate(), companyId, BASE_URL);
+			paymentMethodOperations = new PaymentMethodTemplate(isAuthorized(), getRestTemplate(), companyId, BASE_URL);
+			invoiceOperations = new InvoiceTemplate(isAuthorized(), getRestTemplate(), companyId, BASE_URL);
+			itemOperations = new ItemTemplate(isAuthorized(), getRestTemplate(), companyId, BASE_URL);
 		}
 	}
 
@@ -100,7 +99,7 @@ public class IntuitTemplate extends AbstractOAuth1ApiBinding implements Intuit {
 	}
 
 	private boolean isInitialized(){
-		if(baseUrl != null && companyId != null){
+		if(BASE_URL != null && companyId != null){
 			return true;
 		}
 		return false;

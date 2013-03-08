@@ -16,14 +16,14 @@ public class UserTemplateTest extends AbstractIntuitApiTest {
 	@Test
 	public void testGetUserProfile(){
 		
-		mockServer.expect(requestTo("https://qbo.intuit.com/qbo1/rest/user/v2/132477010"))
+		mockServer.expect(requestTo("https://appcenter.intuit.com/api/v1/user/current"))
 		.andExpect(method(GET))
 		.andRespond(withSuccess(xmlResource("intuit-user-response"), APPLICATION_XML));
 		
 		IntuitProfile userProfile = intuit.userOperations().getUserProfile();
 		
 		assertNotNull(userProfile);
-		assertEquals("ipp.intuit.com+dr@gmail.com", userProfile.getName());
+		assertEquals("jeffxor.williams@gmail.com", userProfile.getName());
 	}
 		
 }
