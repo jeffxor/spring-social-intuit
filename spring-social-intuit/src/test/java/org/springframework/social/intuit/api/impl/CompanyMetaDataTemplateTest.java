@@ -9,7 +9,8 @@ import static org.springframework.test.web.client.match.MockRestRequestMatchers.
 import static org.springframework.test.web.client.response.MockRestResponseCreators.withSuccess;
 
 import org.junit.Test;
-import org.springframework.social.intuit.api.CompanyMetaData;
+
+import com.intuit.sb.cdm.v2.CompanyMetaData;
 
 public class CompanyMetaDataTemplateTest extends AbstractIntuitApiTest {
 
@@ -22,8 +23,8 @@ public class CompanyMetaDataTemplateTest extends AbstractIntuitApiTest {
 		CompanyMetaData companyMetaData = intuit.companyMetaDataOperations().getCompanyMetaData();
 		
 		assertNotNull(companyMetaData);
-		assertEquals("132477010", companyMetaData.getCompanyId());
-		assertEquals("Digital Assets", companyMetaData.getCompanyName());
+		assertEquals("132477010", companyMetaData.getExternalRealmId());
+		assertEquals("Digital Assets", companyMetaData.getQBNRegisteredCompanyName());
 	}
 	
 }

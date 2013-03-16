@@ -1,6 +1,6 @@
 package org.springframework.social.intuit.api.impl;
 
-import static org.springframework.http.MediaType.APPLICATION_JSON;
+import static org.springframework.http.MediaType.*;
 import static org.springframework.test.web.client.match.MockRestRequestMatchers.requestTo;
 import static org.springframework.test.web.client.response.MockRestResponseCreators.withSuccess;
 
@@ -24,7 +24,7 @@ public abstract class AbstractIntuitApiTest {
 		mockServer = MockRestServiceServer.createServer(intuit.getRestTemplate());
 		
 		mockServer.expect(requestTo("https://services.intuit.com/sb/company/v2/availableList"))
-			.andRespond(withSuccess(xmlResource("intuit-companylist"), APPLICATION_JSON));
+			.andRespond(withSuccess(xmlResource("intuit-companylist"), APPLICATION_XML));
 		
 	}
 	
