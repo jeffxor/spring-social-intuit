@@ -4,5 +4,5 @@
 	<Desc>Loan Account</Desc>
 	<Subtype>Savings</Subtype>
 	<AcctNum>5001</AcctNum>
-	<OpeningBalanceDate>2010-05-14</OpeningBalanceDate>
+	<OpeningBalanceDate>2010-05-14-05:00</OpeningBalanceDate>
 </Account>

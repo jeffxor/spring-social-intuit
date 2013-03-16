@@ -38,12 +38,13 @@ public class AccountBuilder {
 	}
 
 	public AccountBuilder withOpeningBalanceDate(String openingBalanceDateString){
+		
 		XMLGregorianCalendar openingBalanceDate = null;
 		try {
 			openingBalanceDate = DatatypeFactory.newInstance().newXMLGregorianCalendar(openingBalanceDateString);
 		} catch (DatatypeConfigurationException e) {
 		}
-		this.account.setOpeningBalanceDate(openingBalanceDate);
+		this.account.setOpeningBalanceDate(openingBalanceDate.toGregorianCalendar());
 		return this;		
 	}
 

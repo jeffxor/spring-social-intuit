@@ -39,8 +39,8 @@ public class InvoiceBuilder {
 			dueDate = DatatypeFactory.newInstance().newXMLGregorianCalendar("2010-08-16");
 		} catch (DatatypeConfigurationException e) {
 		}
-		invoiceHeader.setTxnDate(txnDate);
-		invoiceHeader.setDueDate(dueDate);
+		invoiceHeader.setTxnDate(txnDate.toGregorianCalendar());
+		invoiceHeader.setDueDate(dueDate.toGregorianCalendar());
 		
 		invoice.setHeader(invoiceHeader);
 		

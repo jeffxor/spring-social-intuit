@@ -6,3 +6,6 @@ target/
 .gradle
 pom.xml
 bin/
+build/
+spring-social-intuit/src/main/java/com/
+spring-social-intuit/src/main/java/org/w3/

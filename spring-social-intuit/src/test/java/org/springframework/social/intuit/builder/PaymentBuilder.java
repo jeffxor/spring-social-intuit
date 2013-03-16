@@ -43,7 +43,7 @@ public class PaymentBuilder {
 			txnDate = DatatypeFactory.newInstance().newXMLGregorianCalendar("2010-08-09");
 		} catch (DatatypeConfigurationException e) {
 		}
-		paymentHeader.setTxnDate(txnDate);		
+		paymentHeader.setTxnDate(txnDate.toGregorianCalendar());		
 		payment.setHeader(paymentHeader);
 		
 		PaymentLine paymentLine = new PaymentLine();

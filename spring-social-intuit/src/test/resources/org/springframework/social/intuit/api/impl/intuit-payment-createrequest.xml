@@ -3,7 +3,7 @@
 	xmlns:ns3="http://www.intuit.com/sb/cdm/qbo">
 	<Header>
 		<DocNumber>54</DocNumber>
-		<TxnDate>2010-08-09</TxnDate>
+		<TxnDate>2010-08-09-05:00</TxnDate>
 		<Note>Payment against Invoice</Note>
 		<CustomerId>5</CustomerId>
 		<DepositToAccountId>41</DepositToAccountId>

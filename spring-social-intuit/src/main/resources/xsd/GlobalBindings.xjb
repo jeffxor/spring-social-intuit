@@ -5,6 +5,7 @@
 
 		<jxb:globalBindings>
 		     <jxb:serializable uid="1" />
+		     <jxb:javaType name="java.util.Calendar" xmlType="xs:date" parseMethod="javax.xml.bind.DatatypeConverter.parseDate" printMethod="javax.xml.bind.DatatypeConverter.printDate"/>		     
 		     <xjc:simple/>
 		</jxb:globalBindings >
 </jxb:bindings>

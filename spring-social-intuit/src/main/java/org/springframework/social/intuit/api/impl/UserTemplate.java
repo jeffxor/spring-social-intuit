@@ -7,6 +7,7 @@ import org.springframework.web.client.RestTemplate;
 
 import com.intuit.platform.api.v1.UserResponse;
 
+
 public class UserTemplate implements UserOperations {
 	
 	private final boolean isAuthorized;

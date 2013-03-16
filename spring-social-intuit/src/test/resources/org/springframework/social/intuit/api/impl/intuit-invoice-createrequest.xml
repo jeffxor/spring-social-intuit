@@ -3,7 +3,7 @@
 	xmlns:ns3="http://www.intuit.com/sb/cdm/qbo">
 	<Header>
 		<DocNumber>000101</DocNumber>
-		<TxnDate>2010-08-07</TxnDate>
+		<TxnDate>2010-08-07-05:00</TxnDate>
 		<Msg>No Black Ink Pens</Msg>
 		<Note>Blue Ink pens only</Note>
 		<CustomerId>5</CustomerId>
@@ -12,7 +12,7 @@
 		<SubTotalAmt>200.00</SubTotalAmt>
 		<TaxAmt>100.00</TaxAmt>
 		<TotalAmt>298.75</TotalAmt>
-		<DueDate>2010-08-16</DueDate>
+		<DueDate>2010-08-16-05:00</DueDate>
 		<BillEmail>john_doe@digitalinsight.com</BillEmail>
 		<DiscountAmt>-1.25</DiscountAmt>
 	</Header>
