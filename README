@@ -1,3 +1,6 @@
+Build status on Travis CI
+[![Build Status](https://travis-ci.org/jeffxor/spring-social-intuit.png?branch=master)](https://travis-ci.org/jeffxor/spring-social-intuit)
+
 ============================= Spring Social Intuit ===========================
 This is an intial start for a Spring Social Connection to Intuit Quickbooks
 using there Intuit Partner Platform Data Service for QuickBooks Online. This service
