@@ -1,4 +1,4 @@
 language: java
-script: "gradle test"
+script: "./gradlew build"
 jdk:
   - openjdk6
