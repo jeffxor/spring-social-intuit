@@ -114,6 +114,7 @@ project('spring-social-intuit') {
     description = 'Intuit API'
     dependencies {
        compile ("org.springframework.social:spring-social-core:$springSocialVersion")
+	   compile ("org.springframework.social:spring-social-security:$springSocialVersion")
        compile ("com.fasterxml.jackson.core:jackson-core:$jacksonVersion")
        compile ("com.fasterxml.jackson.core:jackson-databind:$jacksonVersion")
        compile ("com.fasterxml.jackson.core:jackson-annotations:$jacksonVersion")
@@ -121,7 +122,6 @@ project('spring-social-intuit') {
        compile ("javax.xml.bind:jaxb-api:2.2.6")
        compile ("com.sun.xml.bind:jaxb-impl:2.2.4")
        compile ("org.jvnet.jaxb2_commons:jaxb2-basics:0.5.3")
-//       compile ("org.simpleframework:simple-xml:2.6.2")
     }
 }
 
