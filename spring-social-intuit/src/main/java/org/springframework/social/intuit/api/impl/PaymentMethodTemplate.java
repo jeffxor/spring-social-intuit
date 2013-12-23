@@ -40,7 +40,7 @@ public class PaymentMethodTemplate implements PaymentMethodOperations {
 
 	protected void requireAuthorization() {
 		if (!isAuthorized) {
-			throw new MissingAuthorizationException();
+			throw new MissingAuthorizationException("intuit");
 		}
 	}
 }

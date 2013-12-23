@@ -87,7 +87,7 @@ public class PaymentTemplate implements PaymentOperations {
 	}
 	protected void requireAuthorization() {
 		if (!isAuthorized) {
-			throw new MissingAuthorizationException();
+			throw new MissingAuthorizationException("intuit");
 		}
 	}
 

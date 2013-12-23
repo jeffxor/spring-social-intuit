@@ -75,7 +75,7 @@ public class CustomerTemplate implements CustomerOperations {
 	
 	protected void requireAuthorization() {
 		if (!isAuthorized) {
-			throw new MissingAuthorizationException();
+			throw new MissingAuthorizationException("intuit");
 		}
 	}
 
