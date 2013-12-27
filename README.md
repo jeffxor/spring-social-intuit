@@ -1,5 +1,11 @@
 Build status on Travis CI  
 [![Build Status](https://travis-ci.org/jeffxor/spring-social-intuit.png?branch=master)](https://travis-ci.org/jeffxor/spring-social-intuit)
+## Spring Social Support ##
+Please note that the master branch is now supporting version 1.1.X of the Spring Social Project. If you need support 
+for version 1.0.X this is available on the 2.0.X branch.
+
+spring-social-intuit-2.0.X = spring-social-core-1.0.X
+spring-social-intuit-2.1.X = spring-social-core-1.1.X
 
 ## Spring Social Intuit ##
 This is an intial start for a Spring Social Connection to Intuit Quickbooks
