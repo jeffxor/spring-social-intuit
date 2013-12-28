@@ -75,7 +75,7 @@ public class ItemTemplate implements ItemOperations {
 	
 	protected void requireAuthorization() {
 		if (!isAuthorized) {
-			throw new MissingAuthorizationException();
+			throw new MissingAuthorizationException("intuit");
 		}
 	}
 

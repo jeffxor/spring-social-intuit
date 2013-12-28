@@ -42,7 +42,7 @@ public class UserTemplate implements UserOperations {
 
 	protected void requireAuthorization() {
 		if (!isAuthorized) {
-			throw new MissingAuthorizationException();
+			throw new MissingAuthorizationException("intuit");
 		}
 	}
 

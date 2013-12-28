@@ -31,7 +31,7 @@ public class CompanyMetaDataTemplate implements CompanyMetaDataOperations {
 	
 	protected void requireAuthorization() {
 		if (!isAuthorized) {
-			throw new MissingAuthorizationException();
+			throw new MissingAuthorizationException("intuit");
 		}
 	}
 

@@ -1,0 +1,1 @@
+http\://www.springframework.org/schema/social/intuit=org.springframework.social.intuit.config.xml.IntuitNamespaceHandler
